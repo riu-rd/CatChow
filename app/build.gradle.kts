@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace = "com.mobdeve.s17.catchow"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.mobdeve.s17.catchow"
