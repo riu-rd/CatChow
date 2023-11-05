@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "70186292862",
+    "project_id": "catchow-app",
+    "storage_bucket": "catchow-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:70186292862:android:38021f6b3db8c9836d2a2f",
+        "android_client_info": {
+          "package_name": "com.mobdeve.s17.catchow"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6GRZAVYLUwA6MKSVQXnDJpu87iQg4gLY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
