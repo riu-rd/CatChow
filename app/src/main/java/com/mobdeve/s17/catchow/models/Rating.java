@@ -5,18 +5,18 @@ public class Rating {
     private Integer taste;
     private Integer packaging;
     private Integer price;
-    private String text;
+    private String review;
 
     public Rating() {
         // Default constructor
     }
 
-    public Rating(String name, Integer taste, Integer packaging, Integer price, String text) {
+    public Rating(String name, Integer taste, Integer packaging, Integer price, String review) {
         this.name = name;
         this.taste = taste;
         this.packaging = packaging;
         this.price = price;
-        this.text = text;
+        this.review = review;
     }
 
     public String getName() {
@@ -51,11 +51,11 @@ public class Rating {
         this.price = price;
     }
 
-    public String getText() {
-        return text;
+    public String getReview() {
+        return review;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setReview(String review) {
+        this.review = review;
     }
 }
