@@ -21,12 +21,13 @@
         app:layout_constraintVertical_bias="0.0">
 
         <ImageButton
-            android:id="@+id/top_profile_img"
+            android:id="@+id/top_profile_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_margin="15dp"
             android:background="@android:color/transparent"
+            android:contentDescription="home"
             android:padding="10dp"
             app:srcCompat="@drawable/profile_icon" />
 
@@ -34,11 +35,11 @@
             android:id="@+id/greeting_txt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
+            android:layout_marginStart="25dp"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/museo_sans_rounded_700"
             android:padding="5dp"
-            android:text="Hello, User!"
+            android:text="@string/greeting"
             android:textColor="@color/black"
             android:textSize="34sp" />
 
@@ -46,10 +47,10 @@
             android:id="@+id/greeting2_txt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
+            android:layout_marginStart="25dp"
             android:fontFamily="@font/museo_sans_rounded_300"
             android:padding="5dp"
-            android:text="Where would you like to eat?"
+            android:text="@string/greeting2"
             android:textColor="@color/hard_text"
             android:textSize="19sp" />
 
@@ -153,7 +154,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp" />
+            android:layout_marginBottom="20dp"
+            android:scrollbars="horizontal" />
     </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
