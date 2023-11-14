@@ -2,28 +2,170 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <FrameLayout
-        android:id="@+id/frameLayout"
+    <LinearLayout
+        android:id="@+id/home_layout"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="@drawable/home_background"
+        android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/navbar"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
-    </FrameLayout>
+        <ImageButton
+            android:id="@+id/top_profile_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_margin="15dp"
+            android:background="@android:color/transparent"
+            android:padding="10dp"
+            app:srcCompat="@drawable/profile_icon" />
+
+        <TextView
+            android:id="@+id/greeting_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/museo_sans_rounded_700"
+            android:padding="5dp"
+            android:text="Hello, User!"
+            android:textColor="@color/black"
+            android:textSize="34sp" />
+
+        <TextView
+            android:id="@+id/greeting2_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:fontFamily="@font/museo_sans_rounded_300"
+            android:padding="5dp"
+            android:text="Where would you like to eat?"
+            android:textColor="@color/hard_text"
+            android:textSize="19sp" />
+
+        <SearchView
+            android:id="@+id/restaurant_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="25dp"
+            android:background="@drawable/search_view_background"
+            android:contextClickable="false"
+            android:fadingEdge="horizontal|vertical"
+            android:gravity="center"
+            android:iconifiedByDefault="false"
+            android:queryHint="Search for a Restaurant"
+            android:requiresFadingEdge="horizontal|vertical"
+            android:searchIcon="@drawable/search_icon"
+            android:theme="@style/ThemeOverlay.SearchView"
+            android:visibility="visible">
+
+        </SearchView>
+
+        <LinearLayout
+            android:id="@+id/filter_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="25dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/res_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/item_background"
+                android:fontFamily="@font/museo_sans_rounded_500"
+                android:paddingLeft="5dp"
+                android:paddingTop="16dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="16dp"
+                android:text="Restaurant"
+                android:textColor="@color/hard_text"
+                android:textSize="12sp"
+                app:cornerRadius="10dp"
+                app:icon="@drawable/res_icon"
+                app:iconPadding="4dp"
+                app:iconSize="14dp"
+                app:iconTint="@color/orange" />
+
+            <Button
+                android:id="@+id/ff_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/item_background"
+                android:fontFamily="@font/museo_sans_rounded_500"
+                android:paddingLeft="5dp"
+                android:paddingTop="16dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="16dp"
+                android:text="Fast Food"
+                android:textColor="@color/hard_text"
+                android:textSize="12sp"
+                app:cornerRadius="10dp"
+                app:icon="@drawable/fastfood_icon"
+                app:iconPadding="4dp"
+                app:iconSize="14dp"
+                app:iconTint="@color/orange" />
+
+            <Button
+                android:id="@+id/dessert_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/item_background"
+                android:fontFamily="@font/museo_sans_rounded_500"
+                android:paddingLeft="5dp"
+                android:paddingTop="16dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="16dp"
+                android:text="Dessert"
+                android:textColor="@color/hard_text"
+                android:textSize="12sp"
+                app:cornerRadius="10dp"
+                app:icon="@drawable/dessert_icon"
+                app:iconPadding="4dp"
+                app:iconSize="14dp"
+                app:iconTint="@color/orange" />
+
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/restaurant_rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp" />
+    </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:background="@drawable/bottom_nav_background"
+        android:theme="@style/BottomNavTheme"
+        app:itemIconSize="20dp"
         app:itemIconTint="@drawable/bottom_nav_color"
         app:itemTextColor="@color/white"
+        app:labelVisibilityMode="unlabeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

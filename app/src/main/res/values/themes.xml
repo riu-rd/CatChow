@@ -6,4 +6,15 @@
     </style>
 
     <style name="Theme.CatChow" parent="Base.Theme.CatChow" />
+
+    <style name="ThemeOverlay.SearchView" parent="">
+        <item name="android:editTextColor">@color/soft_text</item>
+        <item name="android:textColorHint">@color/soft_text</item>
+        <item name="android:textSize">15dp</item>
+    </style>
+
+    <style name="BottomNavTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/background</item>
+    </style>
+
 </resources>
