@@ -70,9 +70,7 @@
             android:requiresFadingEdge="horizontal|vertical"
             android:searchIcon="@drawable/search_icon"
             android:theme="@style/ThemeOverlay.SearchView"
-            android:visibility="visible">
-
-        </SearchView>
+            android:visibility="visible" />
 
         <LinearLayout
             android:id="@+id/filter_layout"
