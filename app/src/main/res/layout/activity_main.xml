@@ -76,10 +76,28 @@
             android:id="@+id/filter_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
+            android:layout_marginLeft="17dp"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="25dp"
+            android:layout_marginRight="17dp"
             android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/all_btn"
+                android:layout_width="36dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/item_background"
+                android:fontFamily="@font/museo_sans_rounded_900"
+                android:onClick="filterAll"
+                android:paddingLeft="0dp"
+                android:paddingTop="16dp"
+                android:paddingRight="0dp"
+                android:paddingBottom="16dp"
+                android:text="ALL"
+                android:textColor="@color/hard_text"
+                android:textSize="10sp"
+                app:cornerRadius="10dp" />
 
             <Button
                 android:id="@+id/res_btn"
@@ -89,17 +107,18 @@
                 android:layout_weight="1"
                 android:backgroundTint="@color/item_background"
                 android:fontFamily="@font/museo_sans_rounded_500"
+                android:onClick="filterRestaurant"
                 android:paddingLeft="5dp"
                 android:paddingTop="16dp"
                 android:paddingRight="5dp"
                 android:paddingBottom="16dp"
                 android:text="Restaurant"
                 android:textColor="@color/hard_text"
-                android:textSize="12sp"
+                android:textSize="10sp"
                 app:cornerRadius="10dp"
                 app:icon="@drawable/res_icon"
                 app:iconPadding="4dp"
-                app:iconSize="14dp"
+                app:iconSize="12dp"
                 app:iconTint="@color/orange" />
 
             <Button
@@ -110,17 +129,18 @@
                 android:layout_weight="1"
                 android:backgroundTint="@color/item_background"
                 android:fontFamily="@font/museo_sans_rounded_500"
+                android:onClick="filterFastFood"
                 android:paddingLeft="5dp"
                 android:paddingTop="16dp"
                 android:paddingRight="5dp"
                 android:paddingBottom="16dp"
                 android:text="Fast Food"
                 android:textColor="@color/hard_text"
-                android:textSize="12sp"
+                android:textSize="10sp"
                 app:cornerRadius="10dp"
                 app:icon="@drawable/fastfood_icon"
                 app:iconPadding="4dp"
-                app:iconSize="14dp"
+                app:iconSize="12dp"
                 app:iconTint="@color/orange" />
 
             <Button
@@ -131,17 +151,18 @@
                 android:layout_weight="1"
                 android:backgroundTint="@color/item_background"
                 android:fontFamily="@font/museo_sans_rounded_500"
+                android:onClick="filterDessert"
                 android:paddingLeft="5dp"
                 android:paddingTop="16dp"
                 android:paddingRight="5dp"
                 android:paddingBottom="16dp"
                 android:text="Dessert"
                 android:textColor="@color/hard_text"
-                android:textSize="12sp"
+                android:textSize="10sp"
                 app:cornerRadius="10dp"
                 app:icon="@drawable/dessert_icon"
                 app:iconPadding="4dp"
-                app:iconSize="14dp"
+                app:iconSize="12dp"
                 app:iconTint="@color/orange" />
 
 

@@ -14,7 +14,7 @@
         android:layout_margin="10dp"
         android:foregroundGravity="center"
         android:padding="10dp"
-        app:cardBackgroundColor="@android:color/transparent"
+        app:cardBackgroundColor="@color/background"
         app:cardCornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -62,4 +62,9 @@ public class Restaurant_RVAdapter extends RecyclerView.Adapter<Restaurant_RVAdap
             distance_tv = itemView.findViewById(R.id.distance_txt);
         }
     }
+
+        public void setFilteredList(ArrayList<Restaurant> searchedList) {
+            this.restaurantList = searchedList;
+            notifyDataSetChanged();
+        }
 }
