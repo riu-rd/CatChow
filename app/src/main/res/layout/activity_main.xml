@@ -122,23 +122,23 @@
                 app:iconTint="@color/orange" />
 
             <Button
-                android:id="@+id/ff_btn"
+                android:id="@+id/coffee_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/item_background"
                 android:fontFamily="@font/museo_sans_rounded_500"
-                android:onClick="filterFastFood"
+                android:onClick="filterCoffee"
                 android:paddingLeft="5dp"
                 android:paddingTop="16dp"
                 android:paddingRight="5dp"
                 android:paddingBottom="16dp"
-                android:text="Fast Food"
+                android:text="Café"
                 android:textColor="@color/hard_text"
                 android:textSize="10sp"
                 app:cornerRadius="10dp"
-                app:icon="@drawable/fastfood_icon"
+                app:icon="@drawable/coffee_icon"
                 app:iconPadding="4dp"
                 app:iconSize="12dp"
                 app:iconTint="@color/orange" />

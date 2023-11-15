@@ -12,7 +12,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SearchView;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -21,7 +20,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.mobdeve.s17.catchow.adapters.Restaurant_RVAdapter;
-import com.mobdeve.s17.catchow.models.Food;
 import com.mobdeve.s17.catchow.models.Restaurant;
 
 import java.util.ArrayList;
@@ -32,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseFirestore db;
     SearchView res_sv;
     Button res_btn;
-    Button ff_btn;
+    Button coffee_btn;
     Button des_btn;
 
     // Restaurant Recycler View Variables
@@ -49,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         restaurant_rv = findViewById(R.id.restaurant_rv);
         res_sv = findViewById(R.id.restaurant_search);
         res_btn = findViewById(R.id.res_btn);
-        ff_btn = findViewById(R.id.ff_btn);
+        coffee_btn = findViewById(R.id.coffee_btn);
         des_btn = findViewById(R.id.dessert_btn);
 
         // Setup Search View
@@ -98,10 +96,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void filterFastFood(View v) {
+    public void filterCoffee(View v) {
         ArrayList<Restaurant> filteredList = new ArrayList<>();
         for (Restaurant res: restaurantList) {
-            if (res.getType().toLowerCase().contains("Fast Food".toLowerCase())) {
+            if (res.getType().toLowerCase().contains("Café".toLowerCase())) {
                 filteredList.add(res);
             }
             adapter.setFilteredList(filteredList);
