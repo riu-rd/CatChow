@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/resmenu_main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ResMenuActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/resmenu_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textAlignment="viewEnd"
+        app:layout_constraintBottom_toTopOf="@+id/navbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <ImageView
+            android:id="@+id/minimum_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@tools:sample/avatars"
+            app:srcCompat="@drawable/money_icon"
+            tools:layout_editor_absoluteX="26dp"
+            tools:layout_editor_absoluteY="208dp" />
+
+        <ImageView
+            android:id="@+id/res_img"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            app:srcCompat="@drawable/mcdo_logo"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="83dp" />
+
+        <ImageButton
+            android:id="@+id/star_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            app:srcCompat="@drawable/star_icon"
+            tools:layout_editor_absoluteX="335dp"
+            tools:layout_editor_absoluteY="108dp" />
+
+        <ImageView
+            android:id="@+id/duration2_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/duration_smaller_icon"
+            tools:layout_editor_absoluteX="28dp"
+            tools:layout_editor_absoluteY="230dp" />
+
+        <TextView
+            android:id="@+id/resname_txt"
+            android:layout_width="190dp"
+            android:layout_height="0dp"
+            android:fontFamily="@font/museo_sans_rounded_700"
+            android:paddingTop="12dp"
+            android:text="McDonalds"
+            android:textAlignment="viewStart"
+            android:textColor="@color/black"
+            android:textSize="26sp"
+            tools:layout_editor_absoluteX="136dp"
+            tools:layout_editor_absoluteY="83dp" />
+
+        <TextView
+            android:id="@+id/resgreeting_txt"
+            android:layout_width="190dp"
+            android:layout_height="0dp"
+            android:fontFamily="@font/museo_sans_rounded_300"
+            android:padding="3dp"
+            android:text="Welcome to McDonalds!"
+            android:textAlignment="viewStart"
+            android:textColor="@color/hard_text"
+            android:textSize="11sp"
+            tools:layout_editor_absoluteX="136dp"
+            tools:layout_editor_absoluteY="123dp" />
+
+        <TextView
+            android:id="@+id/resgreeting2_txt"
+            android:layout_width="190dp"
+            android:layout_height="0dp"
+            android:fontFamily="@font/museo_sans_rounded_300"
+            android:padding="2dp"
+            android:text="What would you like to eat?"
+            android:textAlignment="viewStart"
+            android:textColor="@color/hard_text"
+            android:textSize="11sp"
+            tools:layout_editor_absoluteX="136dp"
+            tools:layout_editor_absoluteY="142dp" />
+
+        <TextView
+            android:id="@+id/rating_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:fontFamily="@font/museo_sans_rounded_300"
+            android:padding="2dp"
+            android:text="4.5"
+            android:textAlignment="viewStart"
+            android:textColor="@color/hard_text"
+            android:textSize="13sp"
+            tools:layout_editor_absoluteX="349dp"
+            tools:layout_editor_absoluteY="158dp" />
+
+        <TextView
+            android:id="@+id/see_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:fontFamily="@font/museo_sans_rounded_700"
+            android:text="See Reviews"
+            android:textAlignment="center"
+            android:textColor="@color/orange"
+            android:textSize="12sp"
+            tools:layout_editor_absoluteX="326dp"
+            tools:layout_editor_absoluteY="177dp" />
+
+        <TextView
+            android:id="@+id/info_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:fontFamily="@font/museo_sans_rounded_300"
+            android:padding="2dp"
+            android:text="0.6 km away | ₱ 50.00 Delivery Fee"
+            android:textAlignment="viewStart"
+            android:textColor="@color/hard_text"
+            android:textSize="11sp"
+            tools:layout_editor_absoluteX="26dp"
+            tools:layout_editor_absoluteY="191dp" />
+
+        <TextView
+            android:id="@+id/minimum_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:fontFamily="@font/museo_sans_rounded_300"
+            android:padding="2dp"
+            android:text="Minimum Order: ₱ 109.00"
+            android:textAlignment="viewStart"
+            android:textColor="@color/hard_text"
+            android:textSize="11sp"
+            tools:layout_editor_absoluteX="46dp"
+            tools:layout_editor_absoluteY="211dp" />
+
+        <TextView
+            android:id="@+id/duration_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:fontFamily="@font/museo_sans_rounded_300"
+            android:padding="2dp"
+            android:text="Approx. Delivery: 30 min"
+            android:textAlignment="viewStart"
+            android:textColor="@color/hard_text"
+            android:textSize="11sp"
+            tools:layout_editor_absoluteX="46dp"
+            tools:layout_editor_absoluteY="232dp" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/filter_card"
+            android:layout_width="285dp"
+            android:layout_height="46dp"
+            android:backgroundTint="@color/item_background"
+            app:cardCornerRadius="20dp"
+            tools:layout_editor_absoluteX="22dp"
+            tools:layout_editor_absoluteY="264dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/filter_card_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/all_btn"
+                    android:layout_width="35dp"
+                    android:layout_height="27dp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:fontFamily="@font/museo_sans_rounded_700"
+                    android:paddingLeft="2dp"
+                    android:paddingTop="2dp"
+                    android:paddingRight="2dp"
+                    android:paddingBottom="2dp"
+                    android:text="All"
+                    android:textColor="@color/hard_text"
+                    android:textSize="15sp"
+                    tools:layout_editor_absoluteX="12dp"
+                    tools:layout_editor_absoluteY="10dp" />
+
+                <ImageView
+                    android:id="@+id/separator1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/separator_line"
+                    tools:layout_editor_absoluteX="212dp"
+                    tools:layout_editor_absoluteY="2dp" />
+
+                <Button
+                    android:id="@+id/popular_btn"
+                    android:layout_width="70dp"
+                    android:layout_height="26dp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:fontFamily="@font/museo_sans_rounded_700"
+                    android:paddingLeft="2dp"
+                    android:paddingTop="2dp"
+                    android:paddingRight="2dp"
+                    android:paddingBottom="2dp"
+                    android:text="Popular"
+                    android:textColor="@color/hard_text"
+                    android:textSize="15sp"
+                    tools:layout_editor_absoluteX="91dp"
+                    tools:layout_editor_absoluteY="14dp" />
+
+                <ImageView
+                    android:id="@+id/separator2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/separator_line"
+                    tools:layout_editor_absoluteX="47dp"
+                    tools:layout_editor_absoluteY="2dp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:id="@+id/header_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/orange"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <ImageButton
+                android:id="@+id/top_profile_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|end"
+                android:layout_margin="5dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="home"
+                android:onClick="profile"
+                android:padding="10dp"
+                app:srcCompat="@drawable/profile_icon" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navbar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/bottom_nav_background"
+        android:theme="@style/BottomNavTheme"
+        app:itemIconSize="20dp"
+        app:itemIconTint="@drawable/bottom_nav_color"
+        app:itemTextColor="@color/white"
+        app:labelVisibilityMode="unlabeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav" />
+</androidx.constraintlayout.widget.ConstraintLayout>

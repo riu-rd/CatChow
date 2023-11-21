@@ -188,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
     public void filterCoffee(View v) {
         ArrayList<Restaurant> filteredList = new ArrayList<>();
         for (Restaurant res: restaurantList) {
-            if (res.getType().toLowerCase().contains("Café".toLowerCase())) {
+            if (res.getType().toLowerCase().contains("Cafe".toLowerCase())) {
                 filteredList.add(res);
             }
             adapter.setFilteredList(filteredList);
