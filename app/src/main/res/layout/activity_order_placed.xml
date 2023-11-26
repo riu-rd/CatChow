@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OrderPlacedActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/orange"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="8dp"
+            android:src="@drawable/back" />
+
+        <ImageView
+            android:id="@+id/top_profile_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/profile_icon" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/catchow_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <TextView
+        android:id="@+id/headline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="WE GOT YOUR ORDER"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo" />
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="20 - 30 minutes"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/headline" />
+
+    <TextView
+        android:id="@+id/timeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Estimated Time of Delivery"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/time" />
+
+    <TextView
+        android:id="@+id/orderDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Order Details"
+        android:textColor="@color/orange"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timeText" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/search_view_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/orderDetails" />
+
+    <TextView
+        android:id="@+id/quantity1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="@drawable/quantity_background"
+        android:paddingHorizontal="4dp"
+        android:text="1"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintTop_toTopOf="@+id/view" />
+
+    <TextView
+        android:id="@+id/itemName1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Vanilla Milkshake"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/quantity1"
+        app:layout_constraintTop_toTopOf="@+id/quantity1" />
+
+    <TextView
+        android:id="@+id/itemPrice1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="₱250.00"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintTop_toTopOf="@+id/itemName1" />
+
+    <TextView
+        android:id="@+id/itemDetails1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Large"
+        android:textColor="@color/hard_text"
+        app:layout_constraintStart_toStartOf="@+id/itemName1"
+        app:layout_constraintTop_toBottomOf="@+id/itemName1" />
+
+    <TextView
+        android:id="@+id/itemDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit"
+        android:textColor="@color/blue"
+        app:layout_constraintStart_toStartOf="@+id/itemName2"
+        app:layout_constraintTop_toBottomOf="@+id/itemName2" />
+
+    <TextView
+        android:id="@+id/quantity2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/quantity_background"
+        android:paddingHorizontal="4dp"
+        android:text="1"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@+id/quantity1"
+        app:layout_constraintTop_toBottomOf="@+id/editItemDetails1" />
+
+    <TextView
+        android:id="@+id/itemName2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Spinach Pizza"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/quantity2"
+        app:layout_constraintTop_toTopOf="@+id/quantity2" />
+
+    <TextView
+        android:id="@+id/itemPrice2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="₱265.00"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/itemPrice1"
+        app:layout_constraintTop_toTopOf="@+id/itemName2" />
+
+    <TextView
+        android:id="@+id/editItemDetails1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit"
+        android:textColor="@color/blue"
+        app:layout_constraintStart_toStartOf="@+id/itemDetails1"
+        app:layout_constraintTop_toBottomOf="@+id/itemDetails1" />
+
+    <TextView
+        android:id="@+id/subTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Subtotal: "
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@+id/quantity2"
+        app:layout_constraintTop_toBottomOf="@+id/itemDetails" />
+
+    <TextView
+        android:id="@+id/subTotalAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="₱515.00"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/itemPrice2"
+        app:layout_constraintTop_toTopOf="@+id/subTotal" />
+
+    <TextView
+        android:id="@+id/deliveryFeeAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="₱40.00"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/subTotalAmount"
+        app:layout_constraintTop_toBottomOf="@+id/subTotalAmount" />
+
+    <TextView
+        android:id="@+id/deliveryFee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/delivery_fee"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@+id/subTotal"
+        app:layout_constraintTop_toBottomOf="@+id/subTotal" />
+
+    <TextView
+        android:id="@+id/total"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total: "
+        android:layout_marginTop="8dp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@+id/deliveryFee"
+        app:layout_constraintTop_toBottomOf="@+id/deliveryFee" />
+
+    <TextView
+        android:id="@+id/totalAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="₱555.00"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/deliveryFeeAmount"
+        app:layout_constraintTop_toTopOf="@+id/total" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navbar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/bottom_nav_background"
+        android:theme="@style/BottomNavTheme"
+        app:itemIconSize="20dp"
+        app:itemIconTint="@drawable/bottom_nav_color"
+        app:itemTextColor="@color/white"
+        app:labelVisibilityMode="unlabeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,16 +15,13 @@
         android:theme="@style/Theme.CatChow"
         tools:targetApi="31">
         <activity
-            android:name=".PaymentMethodActivity"
+            android:name=".History"
             android:exported="false" />
         <activity
-            android:name=".ReviewFormActivity"
+            android:name=".SelectedMenuItem"
             android:exported="false" />
         <activity
-            android:name=".SignUpActivity"
-            android:exported="false" />
-        <activity
-            android:name=".LogInActivity"
+            android:name=".OrderPlacedActivity"
             android:exported="false" />
         <activity
             android:name=".CartActivity"
