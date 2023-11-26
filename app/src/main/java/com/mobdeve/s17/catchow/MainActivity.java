@@ -14,7 +14,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.SearchView;
+import android.widget.TextView;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -43,6 +48,10 @@ public class MainActivity extends AppCompatActivity {
     Restaurant_RVAdapter adapter;
     LinearLayoutManager horizontalLayoutManager;
 
+    GoogleSignInOptions gso;
+    GoogleSignInClient gsc;
+    TextView greeting_text;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
         coffee_btn = findViewById(R.id.coffee_btn);
         des_btn = findViewById(R.id.dessert_btn);
         navbar = findViewById(R.id.navbar);
+        greeting_text = findViewById(R.id.greeting_txt);
+
 
         //Setup Bottom Navigation View
         setupBottomNavigationView();
@@ -68,6 +79,15 @@ public class MainActivity extends AppCompatActivity {
 
         // Setup Restaurant Recycler View
         setupRestaurantRecyclerView();
+
+        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
+        gsc = GoogleSignIn.getClient(this,gso);
+
+        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
+        if (acct != null) {
+            String personName = acct.getDisplayName();
+            greeting_text.setText("Hello, " + personName + "!");
+        }
     }
 
     private void setupBottomNavigationView() {
