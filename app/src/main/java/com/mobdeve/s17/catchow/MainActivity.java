@@ -134,9 +134,7 @@ public class MainActivity extends AppCompatActivity {
                             snapshot.getDouble("minimum"),
                             snapshot.getDouble("fee"),
                             snapshot.getString("duration"),
-                            snapshot.getString("distance"),
-                            new ArrayList<>(), // Initialize empty menu
-                            new ArrayList<>()  // Initialize empty ratings
+                            snapshot.getString("distance")
                     );
                     restaurantList.add(res);
                 }
@@ -188,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
     public void filterCoffee(View v) {
         ArrayList<Restaurant> filteredList = new ArrayList<>();
         for (Restaurant res: restaurantList) {
-            if (res.getType().toLowerCase().contains("Café".toLowerCase())) {
+            if (res.getType().toLowerCase().contains("Cafe".toLowerCase())) {
                 filteredList.add(res);
             }
             adapter.setFilteredList(filteredList);

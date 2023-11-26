@@ -4,15 +4,17 @@ public class Food {
     private String imageurl;
     private String name;
     private Double price;
+    private String type;
 
     public Food() {
         // Default constructor
     }
 
-    public Food(String imageurl, String name, Double price) {
+    public Food(String imageurl, String name, Double price, String type) {
         this.imageurl = imageurl;
         this.name = name;
         this.price = price;
+        this.type = type;
     }
 
     public String getImageurl() {
@@ -37,5 +39,13 @@ public class Food {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

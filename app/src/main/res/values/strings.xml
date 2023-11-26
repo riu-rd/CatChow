@@ -4,6 +4,11 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="greeting">Hello, User!</string>
     <string name="greeting2">Where would you like to eat?</string>
+    <string name="menu_logo_description">restaurant logo</string>
+    <string name="CurrFoodImage">current food image</string>
+    <string name="CurrFoodPrice">₱ 182.00</string>
+    <string name="DesignImageDescription">design image</string>
+    <string name="CurrFoodName">1pc Chicken McDo with McSpaghetti</string>
     <string name="cash">Cash</string>
     <string name="gcash">GCash</string>
     <string name="payment_method">Payment Method</string>
