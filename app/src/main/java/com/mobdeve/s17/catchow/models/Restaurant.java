@@ -11,14 +11,12 @@ public class Restaurant {
     private Double fee;
     private String distance;
     private String duration;
-    private ArrayList<Food> menu;
-    private ArrayList<Rating> ratings;
 
     public Restaurant() {
         // Default constructor
     }
 
-    public Restaurant(String imageurl, String name, String type, String level, Double minimum, Double fee, String distance, String duration, ArrayList<Food> menu, ArrayList<Rating> ratings) {
+    public Restaurant(String imageurl, String name, String type, String level, Double minimum, Double fee, String distance, String duration) {
         this.imageurl = imageurl;
         this.name = name;
         this.type = type;
@@ -27,8 +25,6 @@ public class Restaurant {
         this.fee = fee;
         this.distance = distance;
         this.duration = duration;
-        this.menu = menu;
-        this.ratings = ratings;
     }
 
 
@@ -94,21 +90,5 @@ public class Restaurant {
 
     public void setDuration(String duration) {
         this.duration = duration;
-    }
-
-    public ArrayList<Food> getMenu() {
-        return menu;
-    }
-
-    public void setMenu(ArrayList<Food> menu) {
-        this.menu = menu;
-    }
-
-    public ArrayList<Rating> getRatings() {
-        return ratings;
-    }
-
-    public void setRatings(ArrayList<Rating> ratings) {
-        this.ratings = ratings;
     }
 }

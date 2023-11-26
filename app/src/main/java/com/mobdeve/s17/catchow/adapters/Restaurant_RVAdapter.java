@@ -1,6 +1,7 @@
 package com.mobdeve.s17.catchow.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.mobdeve.s17.catchow.R;
+import com.mobdeve.s17.catchow.ResMenuActivity;
 import com.mobdeve.s17.catchow.models.Restaurant;
 
 import java.util.ArrayList;
@@ -34,12 +36,29 @@ public class Restaurant_RVAdapter extends RecyclerView.Adapter<Restaurant_RVAdap
 
     @Override
     public void onBindViewHolder(@NonNull Restaurant_RVAdapter.MyViewHolder holder, int position) {
-        Glide.with(context).load(restaurantList.get(position).getImageurl()).into(holder.restaurant_iv);
-        holder.name_tv.setText(restaurantList.get(position).getName());
-        holder.type_tv.setText(restaurantList.get(position).getType());
-        holder.level_tv.setText(restaurantList.get(position).getLevel());
-        holder.duration_tv.setText(restaurantList.get(position).getDuration());
-        holder.distance_tv.setText(restaurantList.get(position).getDistance());
+        final Restaurant currRestaurant = restaurantList.get(position);
+
+        Glide.with(context).load(currRestaurant.getImageurl()).into(holder.restaurant_iv);
+        holder.name_tv.setText(currRestaurant.getName());
+        holder.type_tv.setText(currRestaurant.getType());
+        holder.level_tv.setText(currRestaurant.getLevel());
+        holder.duration_tv.setText(currRestaurant.getDuration());
+        holder.distance_tv.setText(currRestaurant.getDistance());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ResMenuActivity.class);
+                intent.putExtra("imageurl",currRestaurant.getImageurl());
+                intent.putExtra("name", currRestaurant.getName());
+                intent.putExtra("distance", currRestaurant.getDistance());
+                intent.putExtra("fee", currRestaurant.getFee());
+                intent.putExtra("minimum", currRestaurant.getMinimum());
+                intent.putExtra("duration", currRestaurant.getDuration());
+
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

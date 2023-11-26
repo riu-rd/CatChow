@@ -10,132 +10,130 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/resmenu_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:textAlignment="viewEnd"
         app:layout_constraintBottom_toTopOf="@+id/navbar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header_layout"
+        app:layout_constraintVertical_bias="0.0">
 
         <ImageView
             android:id="@+id/minimum_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="26dp"
-            android:layout_marginTop="208dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/info_txt"
             app:srcCompat="@drawable/money_icon" />
 
         <ImageView
             android:id="@+id/res_img"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="100dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="18dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/info_txt"
-            app:layout_constraintEnd_toStartOf="@+id/resname_txt"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:contentDescription="@string/menu_logo_description"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/header_layout"
+            app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/mcdo_logo" />
 
         <ImageButton
             android:id="@+id/star_btn"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="43dp"
-            android:layout_marginEnd="26dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="20dp"
             android:background="@android:color/transparent"
             android:contentDescription="Star"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/header_layout"
+            app:layout_constraintTop_toTopOf="@+id/resname_txt"
             app:srcCompat="@drawable/star_icon" />
 
         <ImageView
             android:id="@+id/duration2_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="2dp"
-            app:layout_constraintEnd_toEndOf="@+id/minimum_img"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="5dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/minimum_img"
             app:srcCompat="@drawable/duration_smaller_icon" />
 
         <TextView
             android:id="@+id/resname_txt"
-            android:layout_width="190dp"
+            android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_marginTop="18dp"
-            android:layout_marginEnd="9dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
             android:fontFamily="@font/museo_sans_rounded_700"
             android:paddingTop="12dp"
             android:text="McDonalds"
             android:textAlignment="viewStart"
             android:textColor="@color/black"
-            android:textSize="26sp"
-            app:layout_constraintEnd_toStartOf="@+id/star_btn"
+            android:textSize="20sp"
             app:layout_constraintStart_toEndOf="@+id/res_img"
-            app:layout_constraintTop_toBottomOf="@+id/header_layout" />
+            app:layout_constraintTop_toTopOf="@+id/res_img" />
 
         <TextView
-            android:id="@+id/resgreeting_txt"
-            android:layout_width="190dp"
+            android:id="@+id/menugreeting_txt"
+            android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
             android:fontFamily="@font/museo_sans_rounded_300"
             android:padding="3dp"
             android:text="Welcome to McDonalds!"
             android:textAlignment="viewStart"
             android:textColor="@color/hard_text"
-            android:textSize="11sp"
-            app:layout_constraintEnd_toStartOf="@+id/star_btn"
+            android:textSize="10sp"
             app:layout_constraintStart_toEndOf="@+id/res_img"
             app:layout_constraintTop_toBottomOf="@+id/resname_txt" />
 
         <TextView
-            android:id="@+id/resgreeting2_txt"
-            android:layout_width="190dp"
+            android:id="@+id/menugreeting2_txt"
+            android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_marginEnd="9dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
             android:fontFamily="@font/museo_sans_rounded_300"
             android:padding="2dp"
             android:text="What would you like to eat?"
             android:textAlignment="viewStart"
             android:textColor="@color/hard_text"
-            android:textSize="11sp"
-            app:layout_constraintEnd_toStartOf="@+id/star_btn"
+            android:textSize="10sp"
             app:layout_constraintStart_toEndOf="@+id/res_img"
-            app:layout_constraintTop_toBottomOf="@+id/resgreeting_txt" />
+            app:layout_constraintTop_toBottomOf="@+id/menugreeting_txt" />
 
         <TextView
             android:id="@+id/rating_txt"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_marginStart="213dp"
-            android:layout_marginEnd="41dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="37dp"
             android:fontFamily="@font/museo_sans_rounded_300"
             android:padding="2dp"
             android:text="4.5"
             android:textAlignment="viewStart"
             android:textColor="@color/hard_text"
-            android:textSize="13sp"
+            android:textSize="10sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/res_img"
             app:layout_constraintTop_toBottomOf="@+id/star_btn" />
 
         <TextView
             android:id="@+id/see_txt"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="17dp"
             android:fontFamily="@font/museo_sans_rounded_700"
             android:text="See Reviews"
             android:textAlignment="center"
             android:textColor="@color/orange"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/rating_txt" />
 
@@ -143,8 +141,8 @@
             android:id="@+id/info_txt"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_marginStart="26dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/museo_sans_rounded_300"
             android:padding="2dp"
             android:text="0.6 km away | ₱ 50.00 Delivery Fee"
@@ -158,7 +156,7 @@
             android:id="@+id/minimum_txt"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_marginTop="3dp"
+            android:layout_marginStart="10dp"
             android:fontFamily="@font/museo_sans_rounded_300"
             android:padding="2dp"
             android:text="Minimum Order: ₱ 109.00"
@@ -172,6 +170,7 @@
             android:id="@+id/duration_txt"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
+            android:layout_marginStart="10dp"
             android:fontFamily="@font/museo_sans_rounded_300"
             android:padding="2dp"
             android:text="Approx. Delivery: 30 min"
@@ -183,16 +182,14 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/filter_card"
-            android:layout_width="351dp"
-            android:layout_height="46dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginBottom="7dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
             android:backgroundTint="@color/item_background"
             app:cardCornerRadius="20dp"
             app:cardElevation="20dp"
-            app:layout_constraintBottom_toTopOf="@+id/menu_rv"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/duration2_img">
@@ -204,115 +201,109 @@
 
                 <Button
                     android:id="@+id/all_btn"
-                    android:layout_width="38dp"
-                    android:layout_height="47dp"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
                     android:backgroundTint="@android:color/transparent"
                     android:fontFamily="@font/museo_sans_rounded_500"
+                    android:onClick="getAllFood"
                     android:paddingLeft="2dp"
                     android:paddingTop="2dp"
                     android:paddingRight="2dp"
                     android:paddingBottom="2dp"
                     android:text="All"
                     android:textColor="@color/orange"
-                    android:textSize="15sp"
-                    tools:layout_editor_absoluteX="7dp"
-                    tools:layout_editor_absoluteY="0dp" />
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/separator2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     android:id="@+id/separator1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/separator_line"
-                    tools:layout_editor_absoluteX="170dp"
-                    tools:layout_editor_absoluteY="4dp" />
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/recommended_btn"
+                    app:layout_constraintStart_toEndOf="@+id/popular_btn"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/separator_line" />
 
                 <Button
                     android:id="@+id/popular_btn"
-                    android:layout_width="106dp"
-                    android:layout_height="46dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
                     android:backgroundTint="@android:color/transparent"
                     android:fontFamily="@font/museo_sans_rounded_500"
+                    android:onClick="getPopularFood"
                     android:paddingLeft="2dp"
                     android:paddingTop="2dp"
                     android:paddingRight="2dp"
                     android:paddingBottom="2dp"
                     android:text="Popular"
                     android:textColor="@color/hard_text"
-                    android:textSize="15sp"
-                    app:icon="@drawable/fire_icon"
+                    android:textSize="12sp"
                     app:iconPadding="0dp"
+                    app:iconSize="14dp"
                     app:iconTint="@color/hard_text"
-                    tools:layout_editor_absoluteX="64dp"
-                    tools:layout_editor_absoluteY="1dp" />
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/separator1"
+                    app:layout_constraintStart_toEndOf="@+id/separator2"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     android:id="@+id/separator2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/separator_line"
-                    tools:layout_editor_absoluteX="46dp"
-                    tools:layout_editor_absoluteY="4dp" />
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/popular_btn"
+                    app:layout_constraintStart_toEndOf="@+id/all_btn"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/separator_line" />
 
                 <Button
                     android:id="@+id/recommended_btn"
-                    android:layout_width="142dp"
-                    android:layout_height="42dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
                     android:backgroundTint="@android:color/transparent"
                     android:fontFamily="@font/museo_sans_rounded_500"
+                    android:onClick="getRecommendedFood"
                     android:paddingLeft="2dp"
                     android:paddingTop="2dp"
                     android:paddingRight="2dp"
                     android:paddingBottom="2dp"
                     android:text="Recommended"
                     android:textColor="@color/hard_text"
-                    android:textSize="15sp"
-                    app:icon="@drawable/recommended_icon"
+                    android:textSize="12sp"
                     app:iconPadding="0dp"
+                    app:iconSize="14dp"
                     app:iconTint="@color/hard_text"
-                    tools:layout_editor_absoluteX="193dp"
-                    tools:layout_editor_absoluteY="4dp" />
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/separator1"
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>
 
-        <LinearLayout
-            android:id="@+id/header_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/orange"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
-            <ImageButton
-                android:id="@+id/top_profile_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical|end"
-                android:layout_margin="5dp"
-                android:background="@android:color/transparent"
-                android:contentDescription="home"
-                android:onClick="profile"
-                android:padding="10dp"
-                app:srcCompat="@drawable/profile_icon" />
-
-        </LinearLayout>
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/menu_rv"
-            android:layout_width="388dp"
-            android:layout_height="414dp"
-            android:layout_marginStart="13dp"
-            android:layout_marginTop="7dp"
-            android:layout_marginEnd="10dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -323,7 +314,7 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navbar"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/bottom_nav_background"
         android:theme="@style/BottomNavTheme"
         android:translationZ="10dp"
@@ -335,4 +326,33 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_nav" />
+
+    <LinearLayout
+        android:id="@+id/header_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/orange"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:id="@+id/top_profile_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|end"
+            android:layout_margin="5dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="home"
+            android:onClick="profile"
+            android:padding="10dp"
+            app:srcCompat="@drawable/profile_icon" />
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

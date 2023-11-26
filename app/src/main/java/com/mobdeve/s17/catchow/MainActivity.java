@@ -134,9 +134,7 @@ public class MainActivity extends AppCompatActivity {
                             snapshot.getDouble("minimum"),
                             snapshot.getDouble("fee"),
                             snapshot.getString("duration"),
-                            snapshot.getString("distance"),
-                            new ArrayList<>(), // Initialize empty menu
-                            new ArrayList<>()  // Initialize empty ratings
+                            snapshot.getString("distance")
                     );
                     restaurantList.add(res);
                 }
