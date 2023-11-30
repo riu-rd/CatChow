@@ -7,8 +7,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -23,12 +25,17 @@ public class ProfileActivity extends AppCompatActivity {
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
 
+    TextView user_name;
+    TextView user_email;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
         navbar = findViewById(R.id.navbar);
+        user_name = findViewById(R.id.user_name);
+        user_email = findViewById(R.id.user_email);
 
         //Setup Bottom Navigation View
         setupBottomNavigationView();
@@ -38,9 +45,18 @@ public class ProfileActivity extends AppCompatActivity {
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         gsc = GoogleSignIn.getClient(this,gso);
 
+        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
+        if (acct != null) {
+            String personName = acct.getGivenName();
+            String email = acct.getEmail();
+            user_name.setText(personName);
+            user_email.setText(email);
+        }
+
         logout_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 signOut();
             }
         });

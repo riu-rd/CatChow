@@ -82,11 +82,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/text_fullname_signup"
             android:layout_marginStart="45dp"
+            android:layout_marginTop="5dp"
             android:layout_marginEnd="45dp"
-            android:layout_marginTop="10dp"
             android:background="@android:color/transparent"
             android:textColor="@android:color/black"
-            android:textSize="16sp" />
+            android:textSize="20sp" />
 
         <View
             android:id="@+id/line1_fullname_signup"
@@ -95,7 +95,7 @@
             android:layout_below="@id/edittext_fullname_signup"
             android:layout_marginStart="45dp"
             android:layout_marginEnd="45dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="5dp"
             android:background="@android:color/black" />
 
         <!-- Email address field -->
@@ -118,11 +118,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/text_email_signup"
             android:layout_marginStart="45dp"
+            android:layout_marginTop="5dp"
             android:layout_marginEnd="45dp"
-            android:layout_marginTop="10dp"
             android:background="@android:color/transparent"
             android:textColor="@android:color/black"
-            android:textSize="16sp" />
+            android:textSize="20sp" />
 
         <View
             android:id="@+id/line1_email_signup"
@@ -131,10 +131,8 @@
             android:layout_below="@id/edittext_email_signup"
             android:layout_marginStart="45dp"
             android:layout_marginEnd="45dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="5dp"
             android:background="@android:color/black" />
-
-        <!-- Password field -->
 
         <TextView
             android:id="@+id/text_pass_signup"
@@ -154,12 +152,12 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/text_pass_signup"
             android:layout_marginStart="45dp"
+            android:layout_marginTop="5dp"
             android:layout_marginEnd="45dp"
-            android:layout_marginTop="10dp"
             android:background="@android:color/transparent"
+            android:inputType="textPassword"
             android:textColor="@android:color/black"
-            android:textSize="16sp"
-            android:inputType="textPassword" />
+            android:textSize="20sp" />
 
         <View
             android:id="@+id/line1_pass_signup"
@@ -168,45 +166,10 @@
             android:layout_below="@id/edittext_pass_signup"
             android:layout_marginStart="45dp"
             android:layout_marginEnd="45dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="5dp"
             android:background="@android:color/black" />
 
         <!-- Re-enter password field -->
-
-        <TextView
-            android:id="@+id/text_reenter_pass_signup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/line1_pass_signup"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="15dp"
-            android:fontFamily="@font/museo_sans_rounded_500"
-            android:text="Re-enter password"
-            android:textColor="#B9B1B1"
-            android:textSize="16sp" />
-
-        <EditText
-            android:id="@+id/edittext_reenter_pass_signup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/text_reenter_pass_signup"
-            android:layout_marginStart="45dp"
-            android:layout_marginEnd="45dp"
-            android:layout_marginTop="10dp"
-            android:background="@android:color/transparent"
-            android:textColor="@android:color/black"
-            android:textSize="16sp"
-            android:inputType="textPassword" />
-
-        <View
-            android:id="@+id/line1_reenter_pass_signup"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@id/edittext_reenter_pass_signup"
-            android:layout_marginStart="45dp"
-            android:layout_marginEnd="45dp"
-            android:layout_marginTop="8dp"
-            android:background="@android:color/black" />
 
         <Button
             android:id="@+id/signup_button"
@@ -229,7 +192,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:text="⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯   OR ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯"
@@ -237,11 +200,11 @@
             android:textSize="16sp" />
 
         <Button
-            android:id="@+id/google_button"
+            android:id="@+id/google_button2"
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:layout_marginStart="55dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="55dp"
             android:background="@drawable/button_background_transparent"
             android:drawableStart="@drawable/google_logo"
@@ -256,6 +219,23 @@
             app:layout_constraintStart_toEndOf="@id/login_button"
             app:layout_constraintTop_toBottomOf="@id/text_forgot_password" />
 
+        <Button
+            android:id="@+id/log_in_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/google_button"
+            android:layout_gravity="center"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="20dp"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/museo_sans_rounded_700"
+            android:text="Already have an account? Login"
+            android:textColor="#8B4513"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/google_button" />
 
 
     </LinearLayout>

@@ -33,8 +33,13 @@ public class LogInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_log_in);
 
         TextView textView = findViewById(R.id.name_login);
+        Button signUpButton = findViewById(R.id.sign_up_button);
+
         String text = "CatChow";
+        String buttonText = "Don't have an account? Sign Up";
+
         Spannable spannable = new SpannableString(text);
+        SpannableString spannableString = new SpannableString(buttonText);
 
         ForegroundColorSpan catColorSpan = new ForegroundColorSpan(Color.parseColor("#FFE4B5"));
         spannable.setSpan(catColorSpan, 0, 3, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -43,6 +48,14 @@ public class LogInActivity extends AppCompatActivity {
         spannable.setSpan(chowColorSpan, 3, text.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         textView.setText(spannable);
+
+        ForegroundColorSpan donthaveAccountColor = new ForegroundColorSpan(Color.parseColor("#8B4513"));
+        spannableString.setSpan(donthaveAccountColor, 0, 21, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        ForegroundColorSpan signUpColor = new ForegroundColorSpan(Color.parseColor("#Ef8A07"));
+        spannableString.setSpan(signUpColor, 22, buttonText.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        signUpButton.setText(spannableString);
 
         google_button = findViewById(R.id.google_button);
 
@@ -53,6 +66,14 @@ public class LogInActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 signIn();
+            }
+        });
+
+        signUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LogInActivity.this, SignUpActivity.class);
+                startActivity(intent);
             }
         });
 
