@@ -104,8 +104,6 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(new Intent(ProfileActivity.this, PaymentMethodActivity.class));
             }
         });
-
-
     }
 
     void signOut () {

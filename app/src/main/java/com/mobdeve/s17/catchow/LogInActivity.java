@@ -14,7 +14,6 @@ import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,24 +22,20 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.mobdeve.s17.catchow.databinding.ActivityLogInBinding;
 
 public class LogInActivity extends AppCompatActivity {
 
-    GoogleSignInOptions gso; // google sign in
-    GoogleSignInClient gsc; // google sign in
-    FirebaseAuth auth; // email/password sign in
-    FirebaseFirestore firestore; // email/password sign in
-    ProgressDialog progressDialog; // email/password sign in
-
-    ActivityLogInBinding binding; // email/password sign in
+    GoogleSignInOptions gso;
+    GoogleSignInClient gsc;
+    FirebaseAuth auth;
+    FirebaseFirestore firestore;
+    ProgressDialog progressDialog;
+    ActivityLogInBinding binding;
     Button google_button;
 
     @Override
@@ -144,8 +139,18 @@ public class LogInActivity extends AppCompatActivity {
     }
 
     void navigateToMainActivity() {
-        finish();
-        Intent intent = new Intent(LogInActivity.this, MainActivity.class);
-        startActivity(intent);
+        google_button = findViewById(R.id.google_button);
+
+        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
+        gsc = GoogleSignIn.getClient(this,gso);
+
+        google_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signIn();
+            }
+        });
+
     }
+
 }
