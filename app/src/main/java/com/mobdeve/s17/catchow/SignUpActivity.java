@@ -51,7 +51,7 @@ public class SignUpActivity extends AppCompatActivity {
         firestore = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle("Create your account.");
+        progressDialog.setTitle("Creating account...");
         progressDialog.setMessage("Please wait.");
 
         Button logInButton = findViewById(R.id.log_in_button);

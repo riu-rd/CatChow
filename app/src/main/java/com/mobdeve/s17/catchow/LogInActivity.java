@@ -52,8 +52,8 @@ public class LogInActivity extends AppCompatActivity {
         firestore = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle("Create your account.");
-        progressDialog.setMessage("Please wait.");
+        progressDialog.setTitle("Logging in...");
+        progressDialog.setMessage("Please wait");
 
         TextView title = findViewById(R.id.name_login);
         Button signUpButton = findViewById(R.id.sign_up_button);
