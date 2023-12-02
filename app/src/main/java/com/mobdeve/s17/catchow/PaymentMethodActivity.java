@@ -4,12 +4,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class PaymentMethodActivity extends AppCompatActivity {
 
     BottomNavigationView navbar;
+    EditText userInput;
+    Button linkButton;
+    TextView resultText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,9 +23,17 @@ public class PaymentMethodActivity extends AppCompatActivity {
         setContentView(R.layout.activity_payment_method);
 
         navbar = findViewById(R.id.navbar);
+        userInput = findViewById(R.id.user_input);
+        linkButton = findViewById(R.id.link_button);
+        resultText = findViewById(R.id.result_text);
 
         //Setup Bottom Navigation View
         setupBottomNavigationView();
+
+        linkButton.setOnClickListener(v -> {
+            String enteredText = userInput.getText().toString().trim();
+            resultText.setText(enteredText);
+        });
     }
 
     private void setupBottomNavigationView() {

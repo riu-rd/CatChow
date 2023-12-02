@@ -149,13 +149,34 @@ public class SignUpActivity extends AppCompatActivity {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
 
             try {
-                task.getResult(ApiException.class);
-                navigateToMainActivity();
+                GoogleSignInAccount account = task.getResult(ApiException.class);
+                handleGoogleSignInResult(account);
             } catch (ApiException e) {
                 Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
             }
         }
     }
+
+    private void handleGoogleSignInResult(GoogleSignInAccount account) {
+        String name = account.getDisplayName();
+        String email = account.getEmail();
+        String password = "**********";
+
+        Users model = new Users(name, email, password);
+
+        firestore.collection("users").document().set(model)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            navigateToMainActivity();
+                        } else {
+                            Toast.makeText(SignUpActivity.this, "Failed to store user data", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
 
     void navigateToMainActivity() {
         finish();

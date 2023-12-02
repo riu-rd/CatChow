@@ -48,7 +48,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/museo_sans_rounded_700"
-                android:text="Sample Name"
+                android:text="User Name"
                 android:textSize="23sp" />
 
             <TextView
@@ -59,7 +59,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="1dp"
                 android:fontFamily="@font/museo_sans_rounded_500"
-                android:text="sample@email.com"
+                android:text="no email"
                 android:textSize="17sp" />
 
             <Button
