@@ -98,12 +98,13 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseUser currentUser = auth.getCurrentUser();
         if (currentUser != null) {
-            String uid = currentUser.getUid();
+            String userEmail = currentUser.getEmail();
 
-            firestore.collection("users").document(uid)
+            firestore.collection("users")
+                    .whereEqualTo("email", userEmail)
                     .get()
-                    .addOnSuccessListener(documentSnapshot -> {
-                        if (documentSnapshot.exists()) {
+                    .addOnSuccessListener(queryDocumentSnapshots -> {
+                        for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                             String name = documentSnapshot.getString("name");
                             String firstName = extractFirstName(name);
 

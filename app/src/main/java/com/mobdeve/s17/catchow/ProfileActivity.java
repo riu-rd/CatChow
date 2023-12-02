@@ -20,6 +20,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.mobdeve.s17.catchow.databinding.ActivityLogInBinding;
 
@@ -67,23 +68,27 @@ public class ProfileActivity extends AppCompatActivity {
 
         FirebaseUser currentUser = auth.getCurrentUser();
         if (currentUser != null) {
-            String uid = currentUser.getUid();
+            String userEmail = currentUser.getEmail();
 
-            firestore.collection("users").document(uid)
+            firestore.collection("users")
+                    .whereEqualTo("email", userEmail)
                     .get()
-                    .addOnSuccessListener(documentSnapshot -> {
-                        if (documentSnapshot.exists()) {
+                    .addOnSuccessListener(queryDocumentSnapshots -> {
+                        for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                             String name = documentSnapshot.getString("name");
                             String email = documentSnapshot.getString("email");
 
                             user_name.setText(name);
                             user_email.setText(email);
+
+                            break;
                         }
                     })
                     .addOnFailureListener(e -> {
                         Toast.makeText(ProfileActivity.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                     });
         }
+
 
         logout_button.setOnClickListener(new View.OnClickListener() {
             @Override

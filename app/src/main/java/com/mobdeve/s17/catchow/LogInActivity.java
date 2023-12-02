@@ -27,6 +27,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.mobdeve.s17.catchow.databinding.ActivityLogInBinding;
+import com.google.firebase.auth.FirebaseAuthInvalidUserException;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.mobdeve.s17.catchow.models.Users;
 
 public class LogInActivity extends AppCompatActivity {
 
@@ -101,6 +104,11 @@ public class LogInActivity extends AppCompatActivity {
                                 progressDialog.dismiss();
                                 startActivity(new Intent(LogInActivity.this, MainActivity.class));
                                 finish();
+                            } else {
+                                progressDialog.dismiss();
+                                if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
+                                    Toast.makeText(LogInActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
+                                }
                             }
                         }
                     });
@@ -130,12 +138,32 @@ public class LogInActivity extends AppCompatActivity {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
 
             try {
-                task.getResult(ApiException.class);
-                navigateToMainActivity();
+                GoogleSignInAccount account = task.getResult(ApiException.class);
+                handleGoogleSignInResult(account);
             } catch (ApiException e) {
                 Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    private void handleGoogleSignInResult(GoogleSignInAccount account) {
+        String name = account.getDisplayName();
+        String email = account.getEmail();
+        String password = "**********";
+
+        Users model = new Users(name, email, password);
+
+        firestore.collection("users").document().set(model)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            navigateToMainActivity();
+                        } else {
+                            Toast.makeText(LogInActivity.this, "Failed to store user data", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 
     void navigateToMainActivity() {
