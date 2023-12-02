@@ -2,11 +2,122 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ReviewFormActivity">
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:id="@+id/home_layout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/home_background"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/navbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/orange"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/backButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/back" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:orientation="vertical">
+
+            </LinearLayout>
 
 
+            <ImageView
+                android:id="@+id/top_profile_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/profile_icon" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <TextView
+            android:layout_marginTop="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/museo_sans_rounded_700"
+            android:text="Leave A Review!"
+            android:textColor="@color/black"
+            android:textStyle="bold">
+
+        </TextView>
+
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp">
+
+        </RatingBar>
+
+        <EditText
+            android:id="@+id/multilineTextView"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="@color/white"
+            android:ems="25"
+            android:fontFamily="@font/museo_sans_rounded_300"
+            android:layout_marginTop="20dp"
+            android:gravity="start|top"
+            android:inputType="textMultiLine"
+            android:lines="6" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:fontFamily="@font/museo_sans_rounded_500"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="30dp"
+            android:text="Review will appear publicly">
+
+        </TextView>
+
+        <Button
+            android:id="@+id/submitReview"
+            android:layout_width="271dp"
+            android:layout_height="66dp"
+            android:layout_marginTop="50dp"
+            android:hint="Submit"
+            android:textColorHint="@color/white"
+            android:textSize="25sp"
+            android:layout_gravity="center">
+
+        </Button>
+
+
+    </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navbar"
@@ -22,5 +133,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_nav" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
