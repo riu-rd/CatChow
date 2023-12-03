@@ -28,7 +28,7 @@
                 android:id="@+id/orange_box"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:background="@drawable/orange_square"
+                android:background="@color/orange"
                 android:scaleType="fitCenter" />
 
             <ImageView
@@ -65,11 +65,13 @@
             <Button
                 android:id="@+id/address_button"
                 android:layout_width="300dp"
-                android:layout_height="50dp"
+                android:layout_height="60dp"
                 android:layout_below="@id/user_email"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="24dp"
-                android:background="@drawable/button_background"
+                android:backgroundTint="@color/orange"
+                android:drawableStart="@drawable/address_icon"
+                android:drawablePadding="8dp"
                 android:fontFamily="@font/museo_sans_rounded_700"
                 android:paddingStart="16dp"
                 android:paddingTop="8dp"
@@ -78,8 +80,7 @@
                 android:text="Addresses"
                 android:textColor="@android:color/white"
                 android:textSize="16sp"
-                android:drawableStart="@drawable/address_icon"
-                android:drawablePadding="8dp" />
+                app:cornerRadius="20dp" />
 
             <ImageView
                 android:id="@+id/address_img"
@@ -112,11 +113,11 @@
             <Button
                 android:id="@+id/payment_button"
                 android:layout_width="300dp"
-                android:layout_height="50dp"
+                android:layout_height="60dp"
                 android:layout_below="@id/address_button"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="24dp"
-                android:background="@drawable/button_background"
+                android:backgroundTint="@color/orange"
                 android:fontFamily="@font/museo_sans_rounded_700"
                 android:paddingStart="16dp"
                 android:paddingTop="8dp"
@@ -124,7 +125,8 @@
                 android:paddingBottom="8dp"
                 android:text="Payment Methods"
                 android:textColor="@android:color/white"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                app:cornerRadius="20dp" />
 
             <ImageView
                 android:id="@+id/payment_img"
@@ -157,11 +159,11 @@
             <Button
                 android:id="@+id/history_button"
                 android:layout_width="300dp"
-                android:layout_height="50dp"
+                android:layout_height="60dp"
                 android:layout_below="@id/payment_button"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="24dp"
-                android:background="@drawable/button_background"
+                android:backgroundTint="@color/orange"
                 android:fontFamily="@font/museo_sans_rounded_700"
                 android:paddingStart="16dp"
                 android:paddingTop="8dp"
@@ -170,7 +172,8 @@
                 android:radius="12dp"
                 android:text="Transaction History"
                 android:textColor="@android:color/white"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                app:cornerRadius="20dp" />
 
             <ImageView
                 android:id="@+id/history_img"
@@ -203,11 +206,11 @@
             <Button
                 android:id="@+id/logout_button"
                 android:layout_width="300dp"
-                android:layout_height="50dp"
+                android:layout_height="60dp"
                 android:layout_below="@id/history_button"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="24dp"
-                android:background="@drawable/button_background"
+                android:backgroundTint="@color/brown"
                 android:fontFamily="@font/museo_sans_rounded_700"
                 android:paddingStart="16dp"
                 android:paddingTop="8dp"
@@ -216,7 +219,8 @@
                 android:radius="12dp"
                 android:text="Logout"
                 android:textColor="@android:color/white"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                app:cornerRadius="20dp" />
 
             <ImageView
                 android:id="@+id/logout_img"

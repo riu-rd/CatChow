@@ -29,6 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="206dp"
                 android:background="@drawable/rounded_orange_square"
+                android:backgroundTint="@color/orange"
                 android:scaleType="fitCenter" />
 
             <ImageView
@@ -48,7 +49,7 @@
                 android:fontFamily="@font/museo_sans_rounded_1000"
                 android:gravity="center"
                 android:text="CatChow"
-                android:textColor="@android:color/black"
+                android:textColor="@color/brown"
                 android:textSize="60sp" />
 
         </RelativeLayout>
@@ -165,77 +166,78 @@
             android:layout_height="1dp"
             android:layout_below="@id/edittext_pass_signup"
             android:layout_marginStart="45dp"
-            android:layout_marginEnd="45dp"
             android:layout_marginTop="5dp"
+            android:layout_marginEnd="45dp"
+            android:layout_marginBottom="20dp"
             android:background="@android:color/black" />
 
         <!-- Re-enter password field -->
 
-        <Button
-            android:id="@+id/click_signup"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="55dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="32dp"
-            android:background="@drawable/button_background"
-            android:fontFamily="@font/museo_sans_rounded_500"
-            android:text="Sign up"
-            android:textColor="@android:color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/text_forgot_password" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/text_or"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:text="⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯   OR ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯"
-            android:textColor="@color/black"
-            android:textSize="16sp" />
+            <Button
+                android:id="@+id/click_signup"
+                android:layout_width="300dp"
+                android:layout_height="55dp"
+                android:backgroundTint="@color/orange"
+                android:fontFamily="@font/museo_sans_rounded_500"
+                android:text="Sign up"
+                android:textColor="@android:color/white"
+                app:cornerRadius="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/google_button2"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="55dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="55dp"
-            android:background="@drawable/button_background_transparent"
-            android:drawableStart="@drawable/google_logo"
-            android:drawablePadding="8dp"
-            android:fontFamily="@font/museo_sans_rounded_500"
-            android:gravity="center"
-            android:text="Continue with Google"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@id/login_button"
-            app:layout_constraintTop_toBottomOf="@id/text_forgot_password" />
+            <TextView
+                android:id="@+id/text_or"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:text="⎯⎯⎯⎯⎯⎯⎯   OR ⎯⎯⎯⎯⎯⎯⎯"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/click_signup" />
 
-        <Button
-            android:id="@+id/log_in_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/google_button"
-            android:layout_gravity="center"
-            android:layout_marginTop="1dp"
-            android:layout_marginBottom="20dp"
-            android:background="@android:color/transparent"
-            android:fontFamily="@font/museo_sans_rounded_700"
-            android:text="Already have an account? Login"
-            android:textColor="#8B4513"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/google_button" />
+            <Button
+                android:id="@+id/google_button2"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/button_background_transparent"
+                android:backgroundTint="@color/background"
+                android:backgroundTintMode="src_atop"
+                android:drawableStart="@drawable/google_logo"
+                android:drawablePadding="8dp"
+                android:fontFamily="@font/museo_sans_rounded_500"
+                android:gravity="center"
+                android:text="Continue with Google"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_or" />
+
+            <Button
+                android:id="@+id/log_in_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/google_button"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/museo_sans_rounded_700"
+                android:text="Already have an account? Login"
+                android:textColor="#8B4513"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/google_button2" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </LinearLayout>

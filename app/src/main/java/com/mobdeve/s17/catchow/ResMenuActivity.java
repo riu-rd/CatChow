@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -56,7 +57,6 @@ public class ResMenuActivity extends AppCompatActivity {
 
     private int selected;
     private int not_selected;
-    public double total_rating;
 
     // Restaurant Recycler View Variables
     RecyclerView menu_rv;
@@ -90,7 +90,6 @@ public class ResMenuActivity extends AppCompatActivity {
         recommended_btn = findViewById(R.id.recommended_btn);
         selected = ContextCompat.getColor(this, R.color.orange);
         not_selected = ContextCompat.getColor(this, R.color.hard_text);
-        total_rating = 0;
 
         // Setup Bottom Navigation View
         setupBottomNavigationView();
@@ -98,18 +97,18 @@ public class ResMenuActivity extends AppCompatActivity {
         // Setup Activity values
         setupActivityValues();
 
-        // Setup Ratings (Under Construction)
-        //setupRatings();
-
         // Setup Firestore Database
         db = FirebaseFirestore.getInstance();
 
         // Setup Restaurant Recycler View
         setupMenuRecyclerView();
+
+        // Setup Ratings (Under Construction)
+        setupRatings();
     }
 
     private void setupBottomNavigationView() {
-        navbar.setSelectedItemId(0);
+        navbar.setSelectedItemId(R.id.menu_home);
         navbar.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
             if (id == R.id.menu_home) {
@@ -158,7 +157,9 @@ public class ResMenuActivity extends AppCompatActivity {
     }
 
     private void setupMenuRecyclerView() {
-        db.collection("restaurants/" + this.name + "/menu")
+        db.collection("restaurants")
+                .document(this.name)
+                .collection("menu")
                 .orderBy("name", Query.Direction.ASCENDING)
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -193,7 +194,9 @@ public class ResMenuActivity extends AppCompatActivity {
 
     private void setupRatings() {
         Log.d(TAG, "WORKING!!!");
-        db.collection("restaurants/" + this.name + "/ratings")
+        db.collection("restaurants")
+                .document(this.name)
+                .collection("ratings")
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
@@ -211,17 +214,18 @@ public class ResMenuActivity extends AppCompatActivity {
                             );
                             ratingList.add(rate);
                         }
+                         double totalRating = 0.0;
                          for (Rating r : ratingList) {
-                            Double total = Double.valueOf((r.getPrice() + r.getPackaging() + r.getTaste()) / 3);
-                            total_rating += total;
+                            totalRating = Double.valueOf((r.getPrice() + r.getPackaging() + r.getTaste()) / 3.0);
                         }
-                        total_rating /= ratingList.size();
-                        rating_txt.setText(String.format("%.1f", total_rating));
+                        if (!ratingList.isEmpty()) {
+                            totalRating /= ratingList.size();
+                        }
+                        rating_txt.setText(String.format("%.1f", totalRating));
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.d(TAG, "NOTTT WORKING!!!");
                         Log.e(TAG, "Failure: ", e);
                     }
                 });
@@ -265,5 +269,9 @@ public class ResMenuActivity extends AppCompatActivity {
         all_btn.setTextColor(not_selected);
         popular_btn.setTextColor(not_selected);
         recommended_btn.setTextColor(selected);
+    }
+
+    public void goBack (View v) {
+        finish();
     }
 }

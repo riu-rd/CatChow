@@ -10,4 +10,5 @@
     <color name="soft_text">#989898</color>
     <color name="hard_text">#6C6C6C</color>
     <color name="blue">#2881A5</color>
+    <color name="red">#cc0000</color>
 </resources>
