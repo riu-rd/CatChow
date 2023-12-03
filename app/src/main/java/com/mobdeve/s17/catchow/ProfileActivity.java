@@ -94,7 +94,6 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 signOut();
-                auth.signOut();
                 Intent intent = new Intent(getApplicationContext(), LogInActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
@@ -112,6 +111,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     void signOut () {
+        auth.signOut();
         Task<Void> voidTask = gsc.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(Task<Void> task) {

@@ -26,6 +26,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.mobdeve.s17.catchow.databinding.ActivitySignUpBinding;
 import com.mobdeve.s17.catchow.models.Users;
 
@@ -160,22 +161,45 @@ public class SignUpActivity extends AppCompatActivity {
     private void handleGoogleSignInResult(GoogleSignInAccount account) {
         String name = account.getDisplayName();
         String email = account.getEmail();
-        String password = "**********";
 
+        firestore.collection("users")
+                .whereEqualTo("email", email)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            QuerySnapshot querySnapshot = task.getResult();
+                            if (querySnapshot != null && !querySnapshot.isEmpty()) {
+                                navigateToMainActivity();
+                            } else {
+                                addUserToDatabase(name, email, "*********"); // Placeholder for password
+                            }
+                        } else {
+                            Toast.makeText(SignUpActivity.this, "Error checking user data.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
+    private void addUserToDatabase(String name, String email, String password) {
         Users model = new Users(name, email, password);
 
-        firestore.collection("users").document().set(model)
+        firestore.collection("users")
+                .document(email)
+                .set(model)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             navigateToMainActivity();
                         } else {
-                            Toast.makeText(SignUpActivity.this, "Failed to store user data", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignUpActivity.this, "Failed to add user data.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
     }
+
 
 
     void navigateToMainActivity() {
