@@ -5,24 +5,28 @@
         android:id="@+id/menu_home"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:title="Home"
-        android:icon="@drawable/nav_home" />
+        android:checked="false"
+        android:icon="@drawable/nav_home"
+        android:title="Home" />
     <item
         android:id="@+id/menu_cart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:title="Cart"
-        android:icon="@drawable/nav_cart" />
+        android:checked="false"
+        android:icon="@drawable/nav_cart"
+        android:title="Cart" />
     <item
         android:id="@+id/menu_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:title="Address"
-        android:icon="@drawable/nav_address"/>
+        android:checked="false"
+        android:icon="@drawable/nav_address"
+        android:title="Address" />
     <item
         android:id="@+id/menu_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:title="Profile"
-        android:icon="@drawable/nav_profile" />
+        android:checked="false"
+        android:icon="@drawable/nav_profile"
+        android:title="Profile" />
 </menu>

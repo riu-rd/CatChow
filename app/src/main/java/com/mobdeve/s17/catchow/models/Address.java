@@ -2,41 +2,48 @@ package com.mobdeve.s17.catchow.models;
 
 public class Address {
 
-    private String labelAs;
-    private String regionInfo;
-    private String postalCode;
-    private String streetInfo;
+    private String label;
+    private String region;
+    private String postalcode;
+    private String street;
 
-    public String getLabelAs() {
-        return labelAs;
+    public Address(String label, String region, String postalcode, String street) {
+        this.label = label;
+        this.region = region;
+        this.postalcode = postalcode;
+        this.street = street;
     }
 
-    public void setLabelAs(String labelAs) {
-        this.labelAs = labelAs;
+    public String getLabel() {
+        return label;
     }
 
-    public String getRegionInfo() {
-        return regionInfo;
+    public void setLabel(String label) {
+        this.label = label;
     }
 
-    public void setRegionInfo(String regionInfo) {
-        this.regionInfo = regionInfo;
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
     }
 
     public String getPostalCode() {
-        return postalCode;
+        return postalcode;
     }
 
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
+    public void setPostalCode(String postalcode) {
+        this.postalcode = postalcode;
     }
 
-    public String getStreetInfo() {
-        return streetInfo;
+    public String getStreet() {
+        return street;
     }
 
-    public void setStreetInfo(String streetInfo) {
-        this.streetInfo = streetInfo;
+    public void setStreet(String street) {
+        this.street = street;
     }
 }
 

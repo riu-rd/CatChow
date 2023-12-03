@@ -27,7 +27,7 @@ import com.mobdeve.s17.catchow.databinding.ActivityLogInBinding;
 public class ProfileActivity extends AppCompatActivity {
 
     BottomNavigationView navbar;
-    Button logout_button, payment_button;
+    Button logout_button, payment_button, address_button;
 
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
@@ -54,6 +54,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         logout_button = findViewById(R.id.logout_button);
         payment_button = findViewById(R.id.payment_button);
+        address_button = findViewById(R.id.address_button);
 
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         gsc = GoogleSignIn.getClient(this,gso);
@@ -98,6 +99,14 @@ public class ProfileActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), LogInActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
+                finish();
+            }
+        });
+
+        address_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), AddressActivity.class));
                 finish();
             }
         });
