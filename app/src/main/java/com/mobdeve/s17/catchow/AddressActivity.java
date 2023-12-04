@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -35,13 +36,14 @@ public class AddressActivity extends AppCompatActivity {
     BottomNavigationView navbar;
     FirebaseFirestore db;
     FirebaseAuth auth;
+    GoogleSignInOptions gso;
+    GoogleSignInClient gsc;
     ArrayList<Address> addressList = new ArrayList<>();
     RecyclerView address_rv;
     Address_RVAdapter address_adapter;
     LinearLayoutManager verticalLayoutManager;
 
-    FirebaseUser currentUser;
-
+    String currentEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +58,20 @@ public class AddressActivity extends AppCompatActivity {
 
         // Setup Firestore Database and Auth
         db = FirebaseFirestore.getInstance();
+
+        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
+        gsc = GoogleSignIn.getClient(this,gso);
         auth = FirebaseAuth.getInstance();
-        currentUser = auth.getCurrentUser();
+
+        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
+        if (acct != null) {
+            currentEmail = acct.getEmail();
+        }
+
+        FirebaseUser currentUser = auth.getCurrentUser();
+        if (currentUser != null) {
+            currentEmail = currentUser.getEmail();
+        }
 
         // Setup Restaurant Recycler View
         setupAddressRecyclerView();
@@ -94,7 +108,7 @@ public class AddressActivity extends AppCompatActivity {
 
     private void setupAddressRecyclerView() {
         db.collection("users")
-                .whereEqualTo("email", currentUser.getEmail())
+                .whereEqualTo("email", currentEmail)
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override

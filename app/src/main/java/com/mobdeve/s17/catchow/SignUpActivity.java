@@ -1,5 +1,7 @@
 package com.mobdeve.s17.catchow;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +12,7 @@ import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,13 +25,18 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.mobdeve.s17.catchow.databinding.ActivitySignUpBinding;
 import com.mobdeve.s17.catchow.models.Users;
+
+import java.util.List;
 
 
 public class SignUpActivity extends AppCompatActivity {
@@ -102,29 +110,54 @@ public class SignUpActivity extends AppCompatActivity {
                 } else if(password.isEmpty()) {
                     binding.edittextPassSignup.setError("Enter your password");
                 } else {
-                    progressDialog.show();
-                    auth.createUserWithEmailAndPassword(binding.edittextEmailSignup.getText().toString(), binding.edittextPassSignup.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if(task.isSuccessful()) {
-                                Users model = new Users(name, email, password);
 
-                                String id = task.getResult().getUser().getUid();
-                                firestore.collection("users").document().set(model).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if(task.isSuccessful()) {
-                                            progressDialog.dismiss();
-                                            Toast.makeText(SignUpActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                                        }
+                    firestore.collection("users")
+                            .whereEqualTo("email", email)
+                            .get()
+                            .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                @Override
+                                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                    List<DocumentSnapshot> snapshotList = queryDocumentSnapshots.getDocuments();
+
+                                    if (snapshotList.isEmpty()) {
+                                        // User with the given email does not exist
+                                        // Perform your specific task for the case when the user does not exist
+                                        Log.d(TAG, "User does not exist. Can register");
+                                        progressDialog.show();
+                                        auth.createUserWithEmailAndPassword(binding.edittextEmailSignup.getText().toString(), binding.edittextPassSignup.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                                if(task.isSuccessful()) {
+                                                    Users model = new Users(name, email, password);
+
+                                                    String id = task.getResult().getUser().getUid();
+                                                    firestore.collection("users").document().set(model).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<Void> task) {
+                                                            if(task.isSuccessful()) {
+                                                                progressDialog.dismiss();
+                                                                Toast.makeText(SignUpActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                                                            }
+                                                        }
+                                                    });
+                                                } else {
+                                                    progressDialog.dismiss();
+                                                    Toast.makeText(SignUpActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+                                        });
+                                    } else {
+                                        binding.edittextEmailSignup.setError("Email already exists");
                                     }
-                                });
-                            } else {
-                                progressDialog.dismiss();
-                                Toast.makeText(SignUpActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.e(TAG, "Failure: ", e);
+                                    // Handle failure, e.g., show an error message
+                                }
+                            });
                 }
             }
         });

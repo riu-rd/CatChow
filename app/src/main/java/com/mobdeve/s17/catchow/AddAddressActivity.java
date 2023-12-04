@@ -13,6 +13,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -41,7 +45,10 @@ public class AddAddressActivity extends AppCompatActivity {
 
     FirebaseFirestore db;
     FirebaseAuth auth;
-    FirebaseUser currentUser;
+    GoogleSignInOptions gso;
+    GoogleSignInClient gsc;
+
+    String currentEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,8 +67,19 @@ public class AddAddressActivity extends AppCompatActivity {
 
         // Setup Firestore Database and Auth
         db = FirebaseFirestore.getInstance();
+        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
+        gsc = GoogleSignIn.getClient(this,gso);
         auth = FirebaseAuth.getInstance();
-        currentUser = auth.getCurrentUser();
+
+        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
+        if (acct != null) {
+            currentEmail = acct.getEmail();
+        }
+
+        FirebaseUser currentUser = auth.getCurrentUser();
+        if (currentUser != null) {
+            currentEmail = currentUser.getEmail();
+        }
     }
 
     private void setupBottomNavigationView() {
@@ -108,7 +126,7 @@ public class AddAddressActivity extends AppCompatActivity {
             error_txt.setTextColor(getResources().getColor(R.color.orange, getTheme()));
 
             db.collection("users")
-                    .whereEqualTo("email", currentUser.getEmail())
+                    .whereEqualTo("email", currentEmail)
                     .get()
                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override
