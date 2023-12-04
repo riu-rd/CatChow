@@ -15,7 +15,6 @@ import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -128,7 +127,7 @@ public class SignUpActivity extends AppCompatActivity {
                                             @Override
                                             public void onComplete(@NonNull Task<AuthResult> task) {
                                                 if(task.isSuccessful()) {
-                                                    Users model = new Users(name, email, password);
+                                                    Users model = new Users(name, email);
 
                                                     String id = task.getResult().getUser().getUid();
                                                     firestore.collection("users").document().set(model).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -206,7 +205,7 @@ public class SignUpActivity extends AppCompatActivity {
                             if (querySnapshot != null && !querySnapshot.isEmpty()) {
                                 navigateToMainActivity();
                             } else {
-                                addUserToDatabase(name, email, "*********"); // Placeholder for password
+                                addUserToDatabase(name, email); // Placeholder for password
                             }
                         } else {
                             Toast.makeText(SignUpActivity.this, "Error checking user data.", Toast.LENGTH_SHORT).show();
@@ -215,8 +214,8 @@ public class SignUpActivity extends AppCompatActivity {
                 });
     }
 
-    private void addUserToDatabase(String name, String email, String password) {
-        Users model = new Users(name, email, password);
+    private void addUserToDatabase(String name, String email) {
+        Users model = new Users(name, email);
 
         firestore.collection("users")
                 .document(email)

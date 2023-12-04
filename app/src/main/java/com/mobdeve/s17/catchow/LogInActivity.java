@@ -3,7 +3,6 @@ package com.mobdeve.s17.catchow;
 import static android.content.ContentValues.TAG;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
@@ -12,7 +11,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
-import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.View;
@@ -32,7 +30,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.mobdeve.s17.catchow.databinding.ActivityLogInBinding;
-import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.mobdeve.s17.catchow.models.Users;
 
@@ -167,7 +164,7 @@ public class LogInActivity extends AppCompatActivity {
                             if (querySnapshot != null && !querySnapshot.isEmpty()) {
                                 navigateToMainActivity();
                             } else {
-                                addUserToDatabase(name, email, "*********"); // Placeholder for password
+                                addUserToDatabase(name, email); // Placeholder for password
                             }
                         } else {
                             Toast.makeText(LogInActivity.this, "Error checking user data.", Toast.LENGTH_SHORT).show();
@@ -176,8 +173,8 @@ public class LogInActivity extends AppCompatActivity {
                 });
     }
 
-    private void addUserToDatabase(String name, String email, String password) {
-        Users model = new Users(name, email, password);
+    private void addUserToDatabase(String name, String email) {
+        Users model = new Users(name, email);
 
         firestore.collection("users")
                 .document(email)
