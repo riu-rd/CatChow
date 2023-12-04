@@ -1,7 +1,6 @@
 package com.mobdeve.s17.catchow.adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.mobdeve.s17.catchow.R;
-import com.mobdeve.s17.catchow.SelectedMenuItem;
 import com.mobdeve.s17.catchow.models.Food;
 
 import java.util.ArrayList;
@@ -42,18 +40,6 @@ public class Menu_RVAdapter extends RecyclerView.Adapter<Menu_RVAdapter.MyViewHo
         Glide.with(context).load(currFood.getImageurl()).into(holder.food_iv);
         holder.price_txt.setText("₱ "+ String.format("%.2f", currFood.getPrice()));
         holder.name_txt.setText(currFood.getName());
-
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, SelectedMenuItem.class);
-                intent.putExtra("imageurl", currFood.getImageurl());
-                intent.putExtra("name", currFood.getName());
-                intent.putExtra("price", currFood.getPrice());
-
-                context.startActivity(intent);
-            }
-        });
     }
 
     @Override

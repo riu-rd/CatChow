@@ -90,44 +90,41 @@
         app:layout_constraintTop_toBottomOf="@+id/menuPrice" />
 
     <ImageButton
-        android:id="@+id/decreaseQuantity"
+        android:id="@+id/imageButton"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:backgroundTint="@color/orange"
         android:contentDescription="@string/DesignImageDescription"
         android:src="@drawable/minus"
-        app:layout_constraintEnd_toStartOf="@+id/quantity"
+        app:layout_constraintEnd_toStartOf="@+id/textView"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/quantity" />
+        app:layout_constraintTop_toTopOf="@+id/textView" />
 
     <TextView
-        android:id="@+id/quantity"
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:gravity="center"
         android:text="1"
         android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/increaseQuantity"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton2"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/decreaseQuantity"
+        app:layout_constraintStart_toEndOf="@+id/imageButton"
         app:layout_constraintTop_toBottomOf="@+id/editText" />
 
     <ImageButton
-        android:id="@+id/increaseQuantity"
+        android:id="@+id/imageButton2"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:backgroundTint="@color/orange"
         android:contentDescription="@string/DesignImageDescription"
         android:src="@drawable/add"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/quantity"
-        app:layout_constraintTop_toTopOf="@+id/quantity" />
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="@+id/textView" />
 
     <Button
-        android:id="@+id/add2Cart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
