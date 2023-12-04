@@ -26,7 +26,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/museo_sans_rounded_900"
             android:text="Add Methods"
@@ -38,7 +38,7 @@
             android:id="@+id/gcashLogo"
             android:layout_width="217dp"
             android:layout_height="133dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="8dp"
             android:src="@drawable/gcash_logo" />
 
@@ -55,15 +55,16 @@
         <Button
             android:id="@+id/link_button"
             android:layout_width="300dp"
-            android:layout_height="50dp"
+            android:layout_height="55dp"
             android:layout_marginStart="55dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="32dp"
-            android:background="@drawable/button_background"
+            android:backgroundTint="@color/orange"
             android:fontFamily="@font/museo_sans_rounded_500"
             android:text="Link"
             android:textColor="@android:color/white"
             android:textSize="18sp"
+            app:cornerRadius="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -78,6 +79,46 @@
             android:text=""
             android:textColor="#002CB8"
             android:textSize="25sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/header_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/orange"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/res_back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|center_vertical"
+            android:layout_margin="5dp"
+            android:background="@android:color/transparent"
+            android:onClick="goBack"
+            android:padding="10dp"
+            android:src="@drawable/back" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:id="@+id/top_profile_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|end"
+            android:layout_margin="5dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="home"
+            android:onClick="profile"
+            android:padding="10dp"
+            app:srcCompat="@drawable/profile_icon" />
 
     </LinearLayout>
 

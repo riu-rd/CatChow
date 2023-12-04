@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:fontFamily="@font/museo_sans_rounded_900"
-            android:text="Add An Address"
+            android:text="New Address"
             android:textColor="@color/orange"
             android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
