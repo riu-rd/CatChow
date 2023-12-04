@@ -1,49 +1,44 @@
 package com.mobdeve.s17.catchow.models;
 
-public class Address {
+import java.io.Serializable;
 
-    private String label;
-    private String region;
-    private String postalcode;
-    private String street;
+public class Address implements Serializable {
 
-    public Address(String label, String region, String postalcode, String street) {
-        this.label = label;
-        this.region = region;
-        this.postalcode = postalcode;
-        this.street = street;
+    private String labelAs;
+    private String regionInfo;
+    private String postalCode;
+    private String streetInfo;
+
+    public String getLabelAs() {
+        return labelAs;
     }
 
-    public String getLabel() {
-        return label;
+    public void setLabelAs(String labelAs) {
+        this.labelAs = labelAs;
     }
 
-    public void setLabel(String label) {
-        this.label = label;
+    public String getRegionInfo() {
+        return regionInfo;
     }
 
-    public String getRegion() {
-        return region;
-    }
-
-    public void setRegion(String region) {
-        this.region = region;
+    public void setRegionInfo(String regionInfo) {
+        this.regionInfo = regionInfo;
     }
 
     public String getPostalCode() {
-        return postalcode;
+        return postalCode;
     }
 
-    public void setPostalCode(String postalcode) {
-        this.postalcode = postalcode;
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
     }
 
-    public String getStreet() {
-        return street;
+    public String getStreetInfo() {
+        return streetInfo;
     }
 
-    public void setStreet(String street) {
-        this.street = street;
+    public void setStreetInfo(String streetInfo) {
+        this.streetInfo = streetInfo;
     }
 }
 

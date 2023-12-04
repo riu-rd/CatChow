@@ -159,13 +159,14 @@ public class SelectedMenuItem extends AppCompatActivity {
     }
 
     private void addToCart(String name, double originalPrice, int quantity) {
+        // Create a CartItem object with the provided data
+        CartItem cartItem = new CartItem(name, originalPrice, quantity);
+
         // Create an Intent to start the CartActivity
         Intent cartIntent = new Intent(SelectedMenuItem.this, CartActivity.class);
 
-        // Put the product information as extras in the Intent
-        cartIntent.putExtra("name", name);
-        cartIntent.putExtra("price", originalPrice);
-        cartIntent.putExtra("quantity", quantity);
+        // Pass the CartItem object as an extra in the Intent
+        cartIntent.putExtra("cartItem", cartItem);
 
         // Start the CartActivity with the Intent
         startActivity(cartIntent);

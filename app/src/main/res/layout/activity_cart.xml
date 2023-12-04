@@ -160,7 +160,7 @@
 
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
+            android:id="@+id/cart_rv"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_margin="16dp"
@@ -177,8 +177,8 @@
             android:text="@string/payment_method"
             android:textColor="@color/orange"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/recyclerView"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+            app:layout_constraintStart_toStartOf="@+id/cart_rv"
+            app:layout_constraintTop_toBottomOf="@+id/cart_rv" />
 
         <RadioGroup
             android:id="@+id/paymentRadioGroup"
@@ -216,8 +216,8 @@
             android:layout_height="wrap_content"
             android:text="Total:"
             android:textColor="@color/orange"
-            app:layout_constraintBottom_toTopOf="@+id/button"
-            app:layout_constraintStart_toStartOf="@+id/button"
+            app:layout_constraintBottom_toTopOf="@+id/placeOrder_button"
+            app:layout_constraintStart_toStartOf="@+id/placeOrder_button"
             app:layout_constraintTop_toTopOf="@+id/bottomView" />
 
         <TextView
@@ -227,12 +227,12 @@
             android:text="₱555.00"
             android:textColor="@color/black"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/button"
-            app:layout_constraintEnd_toEndOf="@id/button"
+            app:layout_constraintBottom_toTopOf="@+id/placeOrder_button"
+            app:layout_constraintEnd_toEndOf="@id/placeOrder_button"
             app:layout_constraintTop_toTopOf="@+id/bottomView" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/placeOrder_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"

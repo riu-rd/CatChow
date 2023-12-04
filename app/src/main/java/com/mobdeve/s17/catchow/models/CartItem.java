@@ -1,7 +1,7 @@
 package com.mobdeve.s17.catchow.models;
 import java.io.Serializable;
 
-public class CartItem {
+public class CartItem implements Serializable {
     private String productName;
     private double productOriginalPrice;
     private int productQuantity;
