@@ -13,8 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.mobdeve.s17.catchow.adapters.CartAdapter;
-import com.mobdeve.s17.catchow.models.CartItem;
+import com.mobdeve.s17.catchow.adapters.Cart_RVAdapter;
+import com.mobdeve.s17.catchow.models.Order;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +22,8 @@ import java.util.List;
 public class CartActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private List<CartItem> cartItemList = new ArrayList<>();
-    private CartAdapter cartAdapter;
+    private ArrayList<Order> orderList = new ArrayList<>();
+    private Cart_RVAdapter cartRVAdapter;
 
     Button placeOrderButton;
     @Override
@@ -32,18 +32,12 @@ public class CartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cart);
 
         // Initialize RecyclerView and its adapter
-        cartItemList = getCartItems();
         recyclerView = findViewById(R.id.recyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        cartAdapter = new CartAdapter(cartItemList);
-        recyclerView.setAdapter(cartAdapter);
-
-
-        for (CartItem item : cartItemList) {
-            Log.d("CartItemDebug", "Product: " + item.getName() + ", Quantity: " + item.getQuantity());
-        }
+        cartRVAdapter = new Cart_RVAdapter(orderList);
+        recyclerView.setAdapter(cartRVAdapter);
 
         updateTotalPrice();
 
@@ -77,33 +71,33 @@ public class CartActivity extends AppCompatActivity {
             }
         });
 
-        // Retrieve the CartItem from the intent
+        // Retrieve the Order from the intent
         Intent intent = getIntent();
         if (intent != null) {
-            CartItem cartItem = (CartItem) intent.getSerializableExtra("cartItem");
-            if (cartItem != null) {
-                cartItemList.add(cartItem);
-                cartAdapter.notifyDataSetChanged();
+            Order order = (Order) intent.getSerializableExtra("order");
+            if (order != null) {
+                orderList.add(order);
+                cartRVAdapter.notifyDataSetChanged();
                 updateTotalPrice();
             }
         }
     }
     private void onMenuItemSelected(SelectedMenuItem selectedMenuItem) {
         // Add the selected item to the cart
-        cartAdapter.addItem(selectedMenuItem);
+        cartRVAdapter.addItem(selectedMenuItem);
     }
     // Add a method to update the total price based on cart items
     private void updateTotalPrice() {
         double totalPrice = 0.0;
-        for (CartItem cartItem : cartItemList) {
-            totalPrice += cartItem.getPrice() * cartItem.getQuantity();
+        for (Order order : orderList) {
+            totalPrice += order.getPrice() * order.getQuantity();
         }
 
         TextView totalPriceTextView = findViewById(R.id.price);
         totalPriceTextView.setText("₱" + String.format("%.2f", totalPrice));
     }
-    private List<CartItem> getCartItems() {
-        List<CartItem> items = new ArrayList<>();
+    private List<Order> getCartItems() {
+        List<Order> items = new ArrayList<>();
         return items;
     }
     @Override

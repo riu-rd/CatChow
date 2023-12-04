@@ -11,7 +11,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
-import com.mobdeve.s17.catchow.models.CartItem;
 
 public class SelectedMenuItem extends AppCompatActivity {
 
