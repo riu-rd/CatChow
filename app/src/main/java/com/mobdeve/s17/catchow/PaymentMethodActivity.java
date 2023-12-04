@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -33,11 +34,13 @@ public class PaymentMethodActivity extends AppCompatActivity {
         linkButton.setOnClickListener(v -> {
             String enteredText = userInput.getText().toString().trim();
             resultText.setText(enteredText);
+            //startActivity(new Intent(getApplicationContext(), ReviewFormActivity.class));
+            //finish();
         });
     }
 
     private void setupBottomNavigationView() {
-        navbar.setSelectedItemId(R.id.menu_address);
+        navbar.setSelectedItemId(R.id.menu_profile);
         navbar.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
             if (id == R.id.menu_home) {
@@ -53,6 +56,9 @@ public class PaymentMethodActivity extends AppCompatActivity {
                 return true;
             }
             else if (id == R.id.menu_address) {
+                startActivity(new Intent(getApplicationContext(),AddressActivity.class));
+                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+                finish();
                 return true;
             }
             else if (id == R.id.menu_profile) {
@@ -63,5 +69,15 @@ public class PaymentMethodActivity extends AppCompatActivity {
             }
             return false;
         });
+    }
+
+    public void goBack (View v) {
+        finish();
+    }
+
+    public void profile(View v) {
+        startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
+        overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+        finish();
     }
 }
