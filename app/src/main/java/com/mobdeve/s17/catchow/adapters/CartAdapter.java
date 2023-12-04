@@ -1,5 +1,6 @@
 package com.mobdeve.s17.catchow.adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,10 +18,12 @@ import java.util.List;
 import java.util.Locale;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> {
+    Context context;
 
     private List<CartItem> cartItemList;
 
-    public CartAdapter(List<CartItem> cartItemList) {
+    public CartAdapter(Context context, List<CartItem> cartItemList) {
+        this.context = context;
         this.cartItemList = cartItemList;
     }
     // Add this method to add items to the cart

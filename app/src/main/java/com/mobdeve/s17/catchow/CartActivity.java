@@ -1,5 +1,7 @@
 package com.mobdeve.s17.catchow;
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,11 +11,26 @@ import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.mobdeve.s17.catchow.adapters.Address_RVAdapter;
 import com.mobdeve.s17.catchow.adapters.CartAdapter;
+import com.mobdeve.s17.catchow.models.Address;
 import com.mobdeve.s17.catchow.models.CartItem;
 
 import java.util.ArrayList;
@@ -25,29 +42,39 @@ public class CartActivity extends AppCompatActivity {
     private List<CartItem> cartItemList = new ArrayList<>();
     private CartAdapter cartAdapter;
 
+    FirebaseFirestore db;
+    FirebaseAuth auth;
+    GoogleSignInOptions gso;
+    GoogleSignInClient gsc;
+
+    String currentEmail;
+
     Button placeOrderButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
 
-        // Initialize RecyclerView and its adapter
-        cartItemList = getCartItems();
+        // Setup Firestore Database and Auth
+        db = FirebaseFirestore.getInstance();
+
+        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
+        gsc = GoogleSignIn.getClient(this,gso);
+        auth = FirebaseAuth.getInstance();
         recyclerView = findViewById(R.id.recyclerView);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
 
-        cartAdapter = new CartAdapter(cartItemList);
-        recyclerView.setAdapter(cartAdapter);
-
-
-        for (CartItem item : cartItemList) {
-            Log.d("CartItemDebug", "Product: " + item.getName() + ", Quantity: " + item.getQuantity());
+        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
+        if (acct != null) {
+            currentEmail = acct.getEmail();
         }
 
-        updateTotalPrice();
+        FirebaseUser currentUser = auth.getCurrentUser();
+        if (currentUser != null) {
+            currentEmail = currentUser.getEmail();
+        }
 
-
+        // Setup Restaurant Recycler View
+        // setupCartRecyclerView();
 
         // Handle "Place Order" button click
         placeOrderButton = findViewById(R.id.button);
@@ -102,10 +129,7 @@ public class CartActivity extends AppCompatActivity {
         TextView totalPriceTextView = findViewById(R.id.price);
         totalPriceTextView.setText("₱" + String.format("%.2f", totalPrice));
     }
-    private List<CartItem> getCartItems() {
-        List<CartItem> items = new ArrayList<>();
-        return items;
-    }
+
     @Override
     public void onBackPressed() {
         // Navigate back to MainActivity
@@ -113,5 +137,68 @@ public class CartActivity extends AppCompatActivity {
         Intent mainIntent = new Intent(CartActivity.this, MainActivity.class);
         startActivity(mainIntent);
         finish(); // Optional: Call finish() to close the current activity
+    }
+
+    public void profile(View v) {
+        startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
+        overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+        finish();
+    }
+
+    private void setupCartRecyclerView() {
+        db.collection("users")
+                .whereEqualTo("email", currentEmail)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        List<DocumentSnapshot> snapshotList = queryDocumentSnapshots.getDocuments();
+                        for (DocumentSnapshot snapshot: snapshotList) {
+                            DocumentReference userRef = snapshot.getReference();
+                            userRef.collection("cart")
+                                    .get()
+                                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                        @Override
+                                        public void onSuccess(QuerySnapshot addressQuerySnapshot) {
+                                            Log.d(TAG, "Success: Get USER CART Request Successful!");
+                                            List<DocumentSnapshot> cartSnapshotList = addressQuerySnapshot.getDocuments();
+                                            cartItemList.clear();
+                                            for (DocumentSnapshot cartSnapshot : cartSnapshotList) {
+                                                Log.d(TAG, "Cart: " + cartSnapshot.getData());
+                                                CartItem cartItem = new CartItem(
+                                                        cartSnapshot.getString("name"),
+                                                        Double.parseDouble(cartSnapshot.getString("originalPrice")),
+                                                        Integer.parseInt(cartSnapshot.getString("quantity"))
+                                                );
+                                                cartItemList.add(cartItem);
+                                            }
+
+                                            // Initialize RecyclerView and its adapter
+                                            cartAdapter = new CartAdapter(CartActivity.this, cartItemList);
+                                            recyclerView.setAdapter(cartAdapter);
+                                            LinearLayoutManager layoutManager = new LinearLayoutManager(CartActivity.this);
+                                            recyclerView.setLayoutManager(layoutManager);
+
+                                            updateTotalPrice();
+
+                                            for (CartItem item : cartItemList) {
+                                                Log.d("CartItemDebug", "Product: " + item.getName() + ", Quantity: " + item.getQuantity());
+                                            }
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.e(TAG, "Failure: ", e);
+                                        }
+                                    });
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.e(TAG, "Failure: ", e);
+                    }
+                });
     }
 }
