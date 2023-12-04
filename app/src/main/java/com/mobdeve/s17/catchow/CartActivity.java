@@ -33,7 +33,7 @@ public class CartActivity extends AppCompatActivity {
 
         // Initialize RecyclerView and its adapter
         cartItemList = getCartItems();
-        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView = findViewById(R.id.cart_rv);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
@@ -47,16 +47,19 @@ public class CartActivity extends AppCompatActivity {
 
         updateTotalPrice();
 
-
-
         // Handle "Place Order" button click
-        placeOrderButton = findViewById(R.id.button);
+        placeOrderButton = findViewById(R.id.placeOrder_button);
         placeOrderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: Implement the logic to place the order
+                // Create an Intent to navigate to OrderPlacedActivity
+                Intent orderPlacedIntent = new Intent(CartActivity.this, OrderPlacedActivity.class);
+
+                // Start the OrderPlacedActivity
+                startActivity(orderPlacedIntent);
             }
         });
+
 
         ImageView backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -83,8 +86,8 @@ public class CartActivity extends AppCompatActivity {
             CartItem cartItem = (CartItem) intent.getSerializableExtra("cartItem");
             if (cartItem != null) {
                 cartItemList.add(cartItem);
-                cartAdapter.notifyDataSetChanged();
-                updateTotalPrice();
+                cartAdapter.notifyDataSetChanged(); // Notify adapter about data change
+                updateTotalPrice(); // Update the total price after adding the item
             }
         }
     }
