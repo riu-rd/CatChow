@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".SelectedMenuItem">
 
     <androidx.appcompat.widget.Toolbar
@@ -28,8 +29,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:layout_marginEnd="8dp"
-            android:src="@drawable/profile_icon" />
+            android:onClick="profile"
+            android:src="@drawable/profile_icon"
+            tools:layout_editor_absoluteX="368dp"
+            tools:layout_editor_absoluteY="14dp" />
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -78,6 +81,8 @@
         android:hint="Note:"
         android:paddingVertical="4dp"
         android:paddingStart="8dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/hard_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/menuPrice" />
@@ -101,6 +106,7 @@
         android:layout_marginTop="32dp"
         android:gravity="center"
         android:text="1"
+        android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/increaseQuantity"
         app:layout_constraintHorizontal_bias="0.5"
@@ -124,7 +130,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
+        android:backgroundTint="@color/orange"
         android:text="Add to Cart"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/increaseQuantity"
         app:layout_constraintStart_toStartOf="@+id/decreaseQuantity"
         app:layout_constraintTop_toBottomOf="@+id/quantity" />

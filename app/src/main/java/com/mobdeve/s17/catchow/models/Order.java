@@ -2,10 +2,10 @@ package com.mobdeve.s17.catchow.models;
 
 public class Order {
     private String name;
-    private double price;
-    private int quantity;
+    private Double price;
+    private Double quantity;
 
-    public Order(String name, double price, int quantity) {
+    public Order(String name, Double price, Double quantity) {
         this.name = name;
         this.price = price;
         this.quantity = quantity;
@@ -15,11 +15,11 @@ public class Order {
         return name;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public int getQuantity() {
+    public Double getQuantity() {
         return quantity;
     }
 }

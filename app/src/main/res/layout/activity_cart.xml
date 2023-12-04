@@ -2,9 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/home_main_layout"
+    android:id="@+id/cart_main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".CartActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -13,6 +14,7 @@
         android:layout_height="wrap_content"
         android:background="@color/orange"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -21,8 +23,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:layout_marginStart="8dp"
-            android:src="@drawable/back" />
+            android:onClick="goBack"
+            android:src="@drawable/back"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="20dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -52,14 +56,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:layout_marginEnd="8dp"
-            android:src="@drawable/profile_icon" />
+            android:onClick="profile"
+            android:paddingEnd="20dp"
+            android:src="@drawable/profile_icon"
+            tools:layout_editor_absoluteX="368dp"
+            tools:layout_editor_absoluteY="14dp" />
 
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cart_constraint"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:backgroundTint="@color/background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -101,7 +110,7 @@
 
         <TextView
             android:id="@+id/exactLocation"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="One Archers Place Taft Avenue, Malate, Manila"
@@ -110,13 +119,12 @@
             app:layout_constraintTop_toBottomOf="@+id/pinLocation" />
 
 
-
         <ImageView
             android:id="@+id/clock"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/todo"
             android:layout_marginTop="16dp"
+            android:contentDescription="@string/todo"
             android:src="@drawable/clock"
             app:layout_constraintStart_toStartOf="@+id/imageView"
             app:layout_constraintTop_toBottomOf="@+id/exactLocation" />
@@ -150,6 +158,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
+            android:onClick="addItems"
             android:text="@string/add_items"
             android:textColor="@color/blue"
             app:layout_constraintEnd_toEndOf="@+id/topView"
@@ -157,7 +166,7 @@
 
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
+            android:id="@+id/cart_rv"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_margin="16dp"
@@ -169,13 +178,13 @@
             android:id="@+id/PaymentMethod"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/payment_method"
-            android:layout_marginTop="16dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/payment_method"
             android:textColor="@color/orange"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/recyclerView"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+            app:layout_constraintStart_toStartOf="@+id/cart_rv"
+            app:layout_constraintTop_toBottomOf="@+id/cart_rv" />
 
         <RadioGroup
             android:id="@+id/paymentRadioGroup"
@@ -185,14 +194,18 @@
             app:layout_constraintTop_toBottomOf="@+id/PaymentMethod">
 
             <RadioButton
+                android:id="@+id/cash_option"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/cash" />
+                android:text="@string/cash"
+                android:textColor="@color/black" />
 
             <RadioButton
+                android:id="@+id/gcash_option"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/gcash" />
+                android:text="@string/gcash"
+                android:textColor="@color/black" />
 
         </RadioGroup>
 
@@ -211,27 +224,29 @@
             android:layout_height="wrap_content"
             android:text="Total:"
             android:textColor="@color/orange"
-            app:layout_constraintBottom_toTopOf="@+id/button"
-            app:layout_constraintStart_toStartOf="@+id/button"
+            app:layout_constraintBottom_toTopOf="@+id/place_order"
+            app:layout_constraintStart_toStartOf="@+id/place_order"
             app:layout_constraintTop_toTopOf="@+id/bottomView" />
 
         <TextView
-            android:id="@+id/price"
+            android:id="@+id/total_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="₱555.00"
             android:textColor="@color/black"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/button"
-            app:layout_constraintEnd_toEndOf="@id/button"
+            app:layout_constraintBottom_toTopOf="@+id/place_order"
+            app:layout_constraintEnd_toEndOf="@id/place_order"
             app:layout_constraintTop_toTopOf="@+id/bottomView" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/place_order"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
+            android:backgroundTint="@color/orange"
             android:text="@string/place_order"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
