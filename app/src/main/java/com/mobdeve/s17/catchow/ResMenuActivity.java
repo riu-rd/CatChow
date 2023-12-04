@@ -25,6 +25,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.mobdeve.s17.catchow.adapters.Menu_RVAdapter;
+import com.mobdeve.s17.catchow.models.Address;
 import com.mobdeve.s17.catchow.models.Food;
 import com.mobdeve.s17.catchow.models.Rating;
 
@@ -47,10 +48,10 @@ public class ResMenuActivity extends AppCompatActivity {
     Button all_btn;
     Button popular_btn;
     Button recommended_btn;
-
+    TextView see_reviews;
     private int selected;
     private int not_selected;
-
+    private Address userAddress;
     // Restaurant Recycler View Variables
     RecyclerView menu_rv;
     Menu_RVAdapter menu_adapter;
@@ -83,6 +84,19 @@ public class ResMenuActivity extends AppCompatActivity {
         recommended_btn = findViewById(R.id.recommended_btn);
         selected = ContextCompat.getColor(this, R.color.orange);
         not_selected = ContextCompat.getColor(this, R.color.hard_text);
+        see_reviews = findViewById(R.id.see_reviews);
+
+        see_reviews.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ResMenuActivity.this, ReviewActivity.class);
+                intent.putExtra("restaurantName", name);
+                intent.putExtra("userAddress", userAddress);
+
+                startActivity(intent);
+            }
+        });
+
 
         // Setup Bottom Navigation View
         setupBottomNavigationView();
@@ -207,8 +221,8 @@ public class ResMenuActivity extends AppCompatActivity {
                             );
                             ratingList.add(rate);
                         }
-                         double totalRating = 0.0;
-                         for (Rating r : ratingList) {
+                        double totalRating = 0.0;
+                        for (Rating r : ratingList) {
                             totalRating = Double.valueOf((r.getPrice() + r.getPackaging() + r.getTaste()) / 3.0);
                         }
                         if (!ratingList.isEmpty()) {
