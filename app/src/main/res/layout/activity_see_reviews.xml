@@ -35,7 +35,7 @@
                 android:id="@+id/ratingText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Ratings"
+                android:text="@string/ratings"
                 android:textColor="@android:color/white"
                 android:textStyle="bold" />
 
@@ -43,7 +43,7 @@
                 android:id="@+id/foodRestaurant"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Restaurant"
+                android:text="@string/restaurant"
                 android:textColor="@android:color/white" />
 
             <TextView
