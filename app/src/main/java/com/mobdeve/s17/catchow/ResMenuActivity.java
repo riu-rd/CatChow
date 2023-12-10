@@ -5,13 +5,10 @@ import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -28,13 +25,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.mobdeve.s17.catchow.adapters.Menu_RVAdapter;
-import com.mobdeve.s17.catchow.adapters.Restaurant_RVAdapter;
-import com.mobdeve.s17.catchow.models.Address;
 import com.mobdeve.s17.catchow.models.Food;
 import com.mobdeve.s17.catchow.models.Rating;
-import com.mobdeve.s17.catchow.models.Restaurant;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,11 +47,12 @@ public class ResMenuActivity extends AppCompatActivity {
     Button all_btn;
     Button popular_btn;
     Button recommended_btn;
-    TextView see_reviews;
+
+    TextView see_txt;
+
     private int selected;
     private int not_selected;
-    public double total_rating;
-    private Address userAddress;
+
     // Restaurant Recycler View Variables
     RecyclerView menu_rv;
     Menu_RVAdapter menu_adapter;
@@ -71,6 +65,7 @@ public class ResMenuActivity extends AppCompatActivity {
     private Double fee;
     private Double minimum;
     private String duration;
+    private String storename;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,26 +79,14 @@ public class ResMenuActivity extends AppCompatActivity {
         info_txt = findViewById(R.id.info_txt);
         minimum_txt = findViewById(R.id.minimum_txt);
         duration_txt = findViewById(R.id.duration_txt);
-        rating_txt = findViewById(R.id.rating_txt);
+//        rating_txt = findViewById(R.id.rating_txt);
         menu_rv = findViewById(R.id.menu_rv);
         all_btn = findViewById(R.id.all_btn);
         popular_btn = findViewById(R.id.popular_btn);
         recommended_btn = findViewById(R.id.recommended_btn);
         selected = ContextCompat.getColor(this, R.color.orange);
         not_selected = ContextCompat.getColor(this, R.color.hard_text);
-        total_rating = 0;
-        see_reviews = findViewById(R.id.see_reviews);
-
-        see_reviews.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ResMenuActivity.this, ReviewActivity.class);
-                intent.putExtra("restaurantName", name);
-                intent.putExtra("userAddress", userAddress);
-
-                startActivity(intent);
-            }
-        });
+        see_txt = findViewById(R.id.see_txt);
 
         // Setup Bottom Navigation View
         setupBottomNavigationView();
@@ -111,18 +94,28 @@ public class ResMenuActivity extends AppCompatActivity {
         // Setup Activity values
         setupActivityValues();
 
-        // Setup Ratings (Under Construction)
-        //setupRatings();
-
         // Setup Firestore Database
         db = FirebaseFirestore.getInstance();
 
         // Setup Restaurant Recycler View
         setupMenuRecyclerView();
+
+        // Setup Ratings (Under Construction)
+//        setupRatings();
+
+        see_txt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String restaurantName = resname_txt.getText().toString();
+                Intent intent = new Intent(getApplicationContext(), RatingListActivity.class);
+                intent.putExtra("restaurantName", restaurantName);
+                startActivity(intent);
+            }
+        });
     }
 
     private void setupBottomNavigationView() {
-        navbar.setSelectedItemId(0);
+        navbar.setSelectedItemId(R.id.menu_home);
         navbar.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
             if (id == R.id.menu_home) {
@@ -155,6 +148,7 @@ public class ResMenuActivity extends AppCompatActivity {
 
     private void setupActivityValues() {
         Intent intent = getIntent();
+        this.storename = intent.getStringExtra("storename");
         this.imageurl = intent.getStringExtra("imageurl");
         this.name = intent.getStringExtra("name");
         this.distance = intent.getStringExtra("distance");
@@ -171,7 +165,9 @@ public class ResMenuActivity extends AppCompatActivity {
     }
 
     private void setupMenuRecyclerView() {
-        db.collection("restaurants/" + this.name + "/menu")
+        db.collection("restaurants")
+                .document(this.name)
+                .collection("menu")
                 .orderBy("name", Query.Direction.ASCENDING)
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -185,7 +181,8 @@ public class ResMenuActivity extends AppCompatActivity {
                                     snapshot.getString("imageurl"),
                                     snapshot.getString("name"),
                                     snapshot.getDouble("price"),
-                                    snapshot.getString("type")
+                                    snapshot.getString("type"),
+                                    name
                             );
                             menu.add(food);
                         }
@@ -199,43 +196,6 @@ public class ResMenuActivity extends AppCompatActivity {
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.e(TAG, "Failure: ", e);
-                    }
-                });
-    }
-
-    private void setupRatings() {
-        Log.d(TAG, "WORKING!!!");
-        db.collection("restaurants/" + this.name + "/ratings")
-                .get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        Log.d(TAG, "Success: Get Ratings for " + name + " Request Successful!");
-                        List<DocumentSnapshot> snapshotList = queryDocumentSnapshots.getDocuments();
-                        for (DocumentSnapshot snapshot: snapshotList) {
-                            Log.d(TAG, "Ratings: " + snapshot.getData());
-                            Rating rate = new Rating(
-                                    snapshot.getString("name"),
-                                    snapshot.getLong("taste"),
-                                    snapshot.getLong("packaging"),
-                                    snapshot.getLong("price"),
-                                    snapshot.getString("review")
-                            );
-                            ratingList.add(rate);
-                        }
-
-                        double totalRating = 0.0;
-                        for (Rating r : ratingList) {
-                            totalRating = Double.valueOf((r.getPrice() + r.getPackaging() + r.getTaste()) / 3.0);
-                        }
-                        total_rating /= ratingList.size();
-                        rating_txt.setText(String.format("%.1f", total_rating));
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.d(TAG, "NOTTT WORKING!!!");
                         Log.e(TAG, "Failure: ", e);
                     }
                 });
@@ -279,5 +239,13 @@ public class ResMenuActivity extends AppCompatActivity {
         all_btn.setTextColor(not_selected);
         popular_btn.setTextColor(not_selected);
         recommended_btn.setTextColor(selected);
+    }
+
+    public void goBack (View v) {
+        finish();
+    }
+
+    public void totalRatingReviews() {
+
     }
 }

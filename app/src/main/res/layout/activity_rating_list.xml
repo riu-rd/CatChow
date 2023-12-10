@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".RatingListActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/orange"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="8dp"
+            android:onClick="goBack"
+            android:src="@drawable/back" />
+
+        <ImageView
+            android:id="@+id/top_profile_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginEnd="8dp"
+            android:onClick="profile"
+            android:src="@drawable/profile_icon" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:layout_below="@+id/toolbar"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/search_view_background" />
+
+    <TextView
+        android:id="@+id/overallratingtext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="44dp"
+        android:text="5.0"
+        android:textColor="@color/black"
+        android:textSize="50dp"
+        android:textStyle="bold" />
+
+    <RatingBar
+        android:id="@+id/overallratingbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/overallratingtext"
+        android:layout_gravity="center"
+        android:layout_marginEnd="136dp"
+        android:isIndicator="true"
+        android:numStars="5"
+        android:padding="0dp"
+        android:progressTint="@color/orange"
+        android:scaleX="0.4"
+        android:scaleY="0.4"
+        android:stepSize="0.2" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Reviews"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/ratings_rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/navbar"
+        android:layout_below="@id/textView2"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginVertical="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="129dp"
+        app:layout_constraintBottom_toTopOf="@+id/navbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="0.813" />
+
+    <TextView
+        android:id="@+id/reviews_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/overallratingbar"
+        android:layout_marginStart="95dp"
+        android:text="Reviews "
+        android:textColor="@color/black"
+        android:textSize="12sp" />
+
+    <RatingBar
+        android:id="@+id/ratingBar5star"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:layout_gravity="center"
+        android:layout_marginTop="44dp"
+        android:layout_toEndOf="@+id/overallratingtext"
+        android:isIndicator="true"
+        android:numStars="5"
+        android:padding="0dp"
+        android:progressTint="@color/orange"
+        android:rating="5"
+        android:scaleX="0.3"
+        android:scaleY="0.3"
+        android:stepSize="0.2" />
+
+    <TextView
+        android:id="@+id/rating5count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:layout_marginStart="170dp"
+        android:layout_marginTop="65dp"
+        android:layout_toEndOf="@+id/overallratingtext"
+        android:text="0"
+        android:textColor="@color/black"
+        android:textSize="12sp" />
+
+    <RatingBar
+        android:id="@+id/ratingBar4star"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:layout_gravity="center"
+        android:layout_marginTop="65dp"
+        android:layout_toEndOf="@+id/overallratingtext"
+        android:isIndicator="true"
+        android:numStars="5"
+        android:padding="0dp"
+        android:progressTint="@color/orange"
+        android:rating="4"
+        android:scaleX="0.3"
+        android:scaleY="0.3"
+        android:stepSize="0.2" />
+
+    <TextView
+        android:id="@+id/rating4count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:layout_marginStart="170dp"
+        android:layout_marginTop="85dp"
+        android:layout_toEndOf="@+id/overallratingtext"
+        android:text="0"
+        android:textColor="@color/black"
+        android:textSize="12sp" />
+
+    <RatingBar
+        android:id="@+id/ratingBar3star"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:layout_gravity="center"
+        android:layout_marginTop="85dp"
+        android:layout_toEndOf="@+id/overallratingtext"
+        android:isIndicator="true"
+        android:numStars="5"
+        android:padding="0dp"
+        android:progressTint="@color/orange"
+        android:rating="3"
+        android:scaleX="0.3"
+        android:scaleY="0.3"
+        android:stepSize="0.2" />
+
+    <TextView
+        android:id="@+id/rating3count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:layout_marginStart="170dp"
+        android:layout_marginTop="105dp"
+        android:layout_toEndOf="@+id/overallratingtext"
+        android:text="0"
+        android:textColor="@color/black"
+        android:textSize="12sp" />
+
+    <RatingBar
+        android:id="@+id/ratingBar2star"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:layout_gravity="center"
+        android:layout_marginTop="105dp"
+        android:layout_toEndOf="@+id/overallratingtext"
+        android:isIndicator="true"
+        android:numStars="5"
+        android:padding="0dp"
+        android:progressTint="@color/orange"
+        android:rating="2"
+        android:scaleX="0.3"
+        android:scaleY="0.3"
+        android:stepSize="0.2" />
+
+    <TextView
+        android:id="@+id/rating2count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:layout_marginStart="170dp"
+        android:layout_marginTop="125dp"
+        android:layout_toEndOf="@+id/overallratingtext"
+        android:text="0"
+        android:textColor="@color/black"
+        android:textSize="12sp" />
+
+    <RatingBar
+        android:id="@+id/ratingBar1star"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:layout_gravity="center"
+        android:layout_marginTop="125dp"
+        android:layout_toEndOf="@+id/overallratingtext"
+        android:isIndicator="true"
+        android:numStars="5"
+        android:padding="0dp"
+        android:progressTint="@color/orange"
+        android:rating="1"
+        android:scaleX="0.3"
+        android:scaleY="0.3"
+        android:stepSize="0.2" />
+
+    <TextView
+        android:id="@+id/rating1count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:layout_marginStart="170dp"
+        android:layout_marginTop="145dp"
+        android:layout_toEndOf="@+id/overallratingtext"
+        android:text="0"
+        android:textColor="@color/black"
+        android:textSize="12sp" />
+
+
+    <!--    &lt;!&ndash;    SA CLASS NALNG YUNG LIKE REVIEWS + OVERALL COUNTS NUNG SA RATINGS&ndash;&gt;-->
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/overallratingtext"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="44dp"-->
+    <!--        android:text="5.0"-->
+    <!--        android:textSize="50dp"-->
+    <!--        android:textStyle="bold"-->
+    <!--        app:layout_constraintEnd_toEndOf="@+id/view"-->
+    <!--        app:layout_constraintHorizontal_bias="0.214"-->
+    <!--        app:layout_constraintStart_toStartOf="@+id/view"-->
+    <!--        app:layout_constraintTop_toTopOf="@+id/view" />-->
+
+    <!--    <RatingBar-->
+    <!--        android:id="@+id/overallratingbar"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_gravity="center"-->
+    <!--        android:layout_marginEnd="136dp"-->
+    <!--        android:isIndicator="true"-->
+    <!--        android:numStars="5"-->
+    <!--        android:padding="0dp"-->
+    <!--        android:scaleX="0.4"-->
+    <!--        android:scaleY="0.4"-->
+    <!--        android:stepSize="0.2"-->
+    <!--        app:layout_constraintBottom_toBottomOf="@+id/view"-->
+    <!--        app:layout_constraintEnd_toEndOf="@+id/view"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/overallratingtext"-->
+    <!--        app:layout_constraintVertical_bias="0.0"-->
+    <!--        tools:ignore="MissingConstraints" />-->
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/reviews_count"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="Reviews "-->
+    <!--        android:textSize="12sp"-->
+    <!--        app:layout_constraintBottom_toBottomOf="@+id/view"-->
+    <!--        app:layout_constraintEnd_toEndOf="@+id/view"-->
+    <!--        app:layout_constraintHorizontal_bias="0.238"-->
+    <!--        app:layout_constraintStart_toStartOf="@+id/view"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/overallratingbar"-->
+    <!--        app:layout_constraintVertical_bias="0.0" />-->
+
+    <!--    <RatingBar-->
+    <!--        android:id="@+id/ratingBar5star"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_gravity="center"-->
+    <!--        android:numStars="5"-->
+    <!--        android:padding="0dp"-->
+    <!--        android:rating="1.0"-->
+    <!--        android:scaleX="0.3"-->
+    <!--        android:scaleY="0.3"-->
+    <!--        android:stepSize="0.2"-->
+    <!--        app:layout_constraintBottom_toBottomOf="@+id/view"-->
+    <!--        app:layout_constraintEnd_toEndOf="@+id/view"-->
+    <!--        app:layout_constraintHorizontal_bias="0.913"-->
+    <!--        app:layout_constraintStart_toStartOf="@+id/view"-->
+    <!--        app:layout_constraintTop_toTopOf="@+id/view"-->
+    <!--        app:layout_constraintVertical_bias="0.159"-->
+    <!--        tools:ignore="MissingConstraints" />-->
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/rating5count"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="0"-->
+    <!--        android:textSize="12sp"-->
+    <!--        app:layout_constraintBottom_toBottomOf="@+id/ratingBar5star"-->
+    <!--        app:layout_constraintEnd_toEndOf="@+id/view"-->
+    <!--        app:layout_constraintHorizontal_bias="0.967"-->
+    <!--        app:layout_constraintStart_toStartOf="@+id/view"-->
+    <!--        app:layout_constraintTop_toTopOf="@+id/view"-->
+    <!--        app:layout_constraintVertical_bias="0.671" />-->
+
+    <!--    <RatingBar-->
+    <!--        android:id="@+id/ratingBar4star"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_gravity="center"-->
+    <!--        android:numStars="5"-->
+    <!--        android:padding="0dp"-->
+    <!--        android:rating="1.0"-->
+    <!--        android:scaleX="0.3"-->
+    <!--        android:scaleY="0.3"-->
+    <!--        android:stepSize="0.2"-->
+    <!--        app:layout_constraintBottom_toBottomOf="@+id/view"-->
+    <!--        app:layout_constraintEnd_toEndOf="@+id/view"-->
+    <!--        app:layout_constraintHorizontal_bias="0.913"-->
+    <!--        app:layout_constraintStart_toStartOf="@+id/view"-->
+    <!--        app:layout_constraintTop_toTopOf="@+id/view"-->
+    <!--        app:layout_constraintVertical_bias="0.282"-->
+    <!--        tools:ignore="MissingConstraints" />-->
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/rating4count"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="64dp"-->
+    <!--        android:text="0"-->
+    <!--        android:textSize="12sp"-->
+    <!--        app:layout_constraintEnd_toEndOf="@+id/view"-->
+    <!--        app:layout_constraintHorizontal_bias="0.967"-->
+    <!--        app:layout_constraintStart_toStartOf="@+id/view"-->
+    <!--        app:layout_constraintTop_toTopOf="@+id/view" />-->
+
+    <!--    <RatingBar-->
+    <!--        android:id="@+id/ratingBar3star"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_gravity="center"-->
+    <!--        android:numStars="5"-->
+    <!--        android:padding="0dp"-->
+    <!--        android:rating="1.0"-->
+    <!--        android:scaleX="0.3"-->
+    <!--        android:scaleY="0.3"-->
+    <!--        android:stepSize="0.2"-->
+    <!--        app:layout_constraintBottom_toBottomOf="@+id/view"-->
+    <!--        app:layout_constraintEnd_toEndOf="@+id/view"-->
+    <!--        app:layout_constraintHorizontal_bias="0.913"-->
+    <!--        app:layout_constraintStart_toStartOf="@+id/view"-->
+    <!--        app:layout_constraintTop_toTopOf="@+id/view"-->
+    <!--        app:layout_constraintVertical_bias="0.392"-->
+    <!--        tools:ignore="MissingConstraints" />-->
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/rating3count"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="84dp"-->
+    <!--        android:text="0"-->
+    <!--        android:textSize="12sp"-->
+    <!--        app:layout_constraintEnd_toEndOf="@+id/view"-->
+    <!--        app:layout_constraintHorizontal_bias="0.967"-->
+    <!--        app:layout_constraintStart_toStartOf="@+id/view"-->
+    <!--        app:layout_constraintTop_toTopOf="@+id/view" />-->
+
+    <!--    <RatingBar-->
+    <!--        android:id="@+id/ratingBar2star"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_gravity="center"-->
+    <!--        android:numStars="5"-->
+    <!--        android:padding="0dp"-->
+    <!--        android:rating="1.0"-->
+    <!--        android:scaleX="0.3"-->
+    <!--        android:scaleY="0.3"-->
+    <!--        android:stepSize="0.2"-->
+    <!--        app:layout_constraintBottom_toBottomOf="@+id/view"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.819"-->
+    <!--        app:layout_constraintStart_toStartOf="@+id/view"-->
+    <!--        app:layout_constraintTop_toTopOf="@+id/view"-->
+    <!--        app:layout_constraintVertical_bias="0.503"-->
+    <!--        tools:ignore="MissingConstraints" />-->
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/rating2count"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="104dp"-->
+    <!--        android:text="0"-->
+    <!--        android:textSize="12sp"-->
+    <!--        app:layout_constraintEnd_toEndOf="@+id/view"-->
+    <!--        app:layout_constraintHorizontal_bias="0.967"-->
+    <!--        app:layout_constraintStart_toStartOf="@+id/view"-->
+    <!--        app:layout_constraintTop_toTopOf="@+id/view" />-->
+
+    <!--    <RatingBar-->
+    <!--        android:id="@+id/ratingBar1star"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_gravity="center"-->
+    <!--        android:numStars="5"-->
+    <!--        android:padding="0dp"-->
+    <!--        android:rating="1.0"-->
+    <!--        android:scaleX="0.3"-->
+    <!--        android:scaleY="0.3"-->
+    <!--        android:stepSize="0.2"-->
+    <!--        app:layout_constraintBottom_toBottomOf="@+id/view"-->
+    <!--        app:layout_constraintEnd_toEndOf="@+id/view"-->
+    <!--        app:layout_constraintHorizontal_bias="0.913"-->
+    <!--        app:layout_constraintStart_toStartOf="@+id/view"-->
+    <!--        app:layout_constraintTop_toTopOf="@+id/view"-->
+    <!--        app:layout_constraintVertical_bias="0.638"-->
+    <!--        tools:ignore="MissingConstraints" />-->
+
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/rating1count"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="120dp"-->
+    <!--        android:text="0"-->
+    <!--        android:textSize="12sp"-->
+    <!--        app:layout_constraintEnd_toEndOf="@+id/view"-->
+    <!--        app:layout_constraintHorizontal_bias="0.967"-->
+    <!--        app:layout_constraintStart_toStartOf="@+id/view"-->
+    <!--        app:layout_constraintTop_toTopOf="@+id/view" />-->
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/textView2"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="Reviews"-->
+    <!--        android:layout_marginTop="10dp"-->
+    <!--        android:textColor="@color/black"-->
+    <!--        android:textSize="18sp"-->
+    <!--        android:textStyle="bold"-->
+    <!--        app:layout_constraintBottom_toTopOf="@+id/ratings_rv"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.069"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/view"-->
+    <!--        app:layout_constraintVertical_bias="0.0" />-->
+
+    <!--    <androidx.recyclerview.widget.RecyclerView-->
+    <!--        android:id="@+id/ratings_rv"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginHorizontal="24dp"-->
+    <!--        android:layout_marginVertical="8dp"-->
+    <!--        android:padding="16dp"-->
+    <!--        app:layout_constraintBottom_toTopOf="@+id/navbar"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/toolbar"-->
+    <!--        app:layout_constraintVertical_bias="0.813" />-->
+
+    <!--    <com.google.android.material.bottomnavigation.BottomNavigationView-->
+    <!--        android:id="@+id/navbar"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="60dp"-->
+    <!--        android:background="@drawable/bottom_nav_background"-->
+    <!--        android:theme="@style/BottomNavTheme"-->
+    <!--        app:itemIconSize="20dp"-->
+    <!--        app:itemIconTint="@drawable/bottom_nav_color"-->
+    <!--        app:itemTextColor="@color/white"-->
+    <!--        app:labelVisibilityMode="unlabeled"-->
+    <!--        app:menu="@menu/bottom_nav" />-->
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navbar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bottom_nav_background"
+        android:theme="@style/BottomNavTheme"
+        app:itemIconSize="20dp"
+        app:itemIconTint="@drawable/bottom_nav_color"
+        app:itemTextColor="@color/white"
+        app:labelVisibilityMode="unlabeled"
+        app:menu="@menu/bottom_nav" />
+
+</RelativeLayout>

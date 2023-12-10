@@ -50,6 +50,7 @@ public class Menu_RVAdapter extends RecyclerView.Adapter<Menu_RVAdapter.MyViewHo
                 intent.putExtra("imageurl", currFood.getImageurl());
                 intent.putExtra("name", currFood.getName());
                 intent.putExtra("price", currFood.getPrice());
+                intent.putExtra("storename", currFood.getStorename());
 
                 context.startActivity(intent);
             }

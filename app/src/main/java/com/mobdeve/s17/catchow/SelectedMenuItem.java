@@ -2,7 +2,9 @@ package com.mobdeve.s17.catchow;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -30,44 +32,63 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.mobdeve.s17.catchow.models.CartItem;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import java.util.UUID;
 
 public class SelectedMenuItem extends AppCompatActivity {
-    BottomNavigationView navbar;
-
-    private int quantity = 1;
-    private double originalPrice;
-    private String name;
-    private double price;
-    private String image;
-
 
     FirebaseFirestore db;
     FirebaseAuth auth;
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
 
+    BottomNavigationView navbar;
+
+
     String currentEmail;
+
+    private int quantity = 1;
+    private double originalPrice;
+    private String name;
+    private double price;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selected_menu_item);
 
         navbar = findViewById(R.id.navbar);
+        setupBottomNavigationView();
+
 
         Intent intent = getIntent();
 
-        //Setup Bottom Navigation View
-        setupBottomNavigationView();
-
         if (intent != null) {
+            // Setup Firestore Database and Auth
+            db = FirebaseFirestore.getInstance();
+            gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
+            gsc = GoogleSignIn.getClient(this,gso);
+            auth = FirebaseAuth.getInstance();
+
+            GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
+            if (acct != null) {
+                currentEmail = acct.getEmail();
+            }
+
+            FirebaseUser currentUser = auth.getCurrentUser();
+            if (currentUser != null) {
+                currentEmail = currentUser.getEmail();
+            }
             // Retrieve data from the Intent
             String imageUrl = intent.getStringExtra("imageurl");
             String name = intent.getStringExtra("name");
+            String storename = intent.getStringExtra("storename");
+            Log.d("asdasd",storename);
             originalPrice = intent.getDoubleExtra("price", 0.0);
 
             // Load image into ImageView using Glide
@@ -103,37 +124,132 @@ public class SelectedMenuItem extends AppCompatActivity {
 
             // Set OnClickListener for Add to Cart button
             Button addToCartButton = findViewById(R.id.add2Cart);
+//            addToCartButton.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    if (name.isEmpty() || originalPrice == 0 || quantity == 0) {
+//                        Log.e(TAG, "Fill up all fields");
+//                        return; // Exit the method if the required fields are not filled
+//                    }
+//
+//                    // Assuming you have a SharedPreferences instance named "cartPreferences"
+//                    SharedPreferences sharedPreferences = getSharedPreferences("cartPreferences", Context.MODE_PRIVATE);
+//
+//                    // Check if the order with the same name already exists
+//                    String existingOrderKey = isOrderExists(sharedPreferences, name);
+//                    if (existingOrderKey != null) {
+//                        // If the order already exists, display a toast indicating that the item is already added
+//                        Toast.makeText(getApplicationContext(), "Item is already added to the cart", Toast.LENGTH_SHORT).show();
+//                    } else {
+//                        // If the order does not exist, proceed to add it
+//                        int orderCount = sharedPreferences.getInt("orderCount", 0);
+//
+//                        // Create a unique key for the new order
+//                        String orderKey = "order_" + orderCount;
+//
+//                        // Increment the order count for the next order
+//                        orderCount++;
+//
+//                        // Save the updated order count
+//                        SharedPreferences.Editor editor = sharedPreferences.edit();
+//                        editor.putInt("orderCount", orderCount);
+//                        editor.apply();
+//
+//                        // Save the order details to SharedPreferences
+//                        editor.putString(orderKey + "_name", name);
+//                        editor.putFloat(orderKey + "_price", (float) originalPrice);
+//                        editor.putInt(orderKey + "_quantity", quantity);
+//                        editor.apply();
+//
+//                        Toast.makeText(getApplicationContext(), "New order added to the cart", Toast.LENGTH_SHORT).show();
+//                    }
+//
+//                    setResult(RESULT_OK, new Intent());
+//                    finish();
+//                }
+//
+//                // Helper method to check if an order with the given name already exists
+//                private String isOrderExists(SharedPreferences sharedPreferences, String itemName) {
+//                    Map<String, ?> allEntries = sharedPreferences.getAll();
+//
+//                    for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
+//                        // Check if the entry is a name key and has the same name as the one being added
+//                        if (entry.getKey().endsWith("_name") && entry.getValue().equals(itemName)) {
+//                            // Extract the order key from the name key
+//                            return entry.getKey().replace("_name", ""); // Return the order key if the item already exists
+//                        }
+//                    }
+//                    return null; // Order with the given name does not exist
+//                }
+//            });
             addToCartButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    addToCart(name, originalPrice, quantity);
+                    if (name.isEmpty() || quantity == 0) {
+                        Log.e(TAG, "Fill up all fields");
+                        return; // Exit the method if the required fields are not filled
+                    }
+
+                    // Assuming you have a SharedPreferences instance named "cartPreferences"
+                    SharedPreferences sharedPreferences = getSharedPreferences("cartPreferences", Context.MODE_PRIVATE);
+
+                    // Check if the order with the same name already exists
+                    String existingOrderKey = isOrderExists(sharedPreferences, name);
+                    if (existingOrderKey != null) {
+                        // If the order already exists, display a toast indicating that the item is already added
+                        Toast.makeText(getApplicationContext(), "Item is already added to the cart", Toast.LENGTH_SHORT).show();
+                    } else {
+                        // If the order does not exist, proceed to add it
+                        int orderCount = sharedPreferences.getInt("orderCount", 0);
+
+                        // Create a unique key for the new order
+                        String orderKey = "order_" + orderCount;
+
+                        // Increment the order count for the next order
+                        orderCount++;
+
+                        // Save the updated order count
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putInt("orderCount", orderCount);
+                        editor.apply();
+
+                        // Save the order details to SharedPreferences using the updated total price
+                        editor.putString(orderKey + "_storename", storename);
+                        editor.putString(orderKey + "_name", name);
+                        editor.putFloat(orderKey + "_price", (float) (originalPrice * quantity));
+                        editor.putInt(orderKey + "_quantity", quantity);
+                        editor.apply();
+
+                        Toast.makeText(getApplicationContext(), "New order added to the cart", Toast.LENGTH_SHORT).show();
+                    }
+
+                    setResult(RESULT_OK, new Intent());
+                    finish();
+                }
+
+                // Helper method to check if an order with the given name already exists
+                private String isOrderExists(SharedPreferences sharedPreferences, String itemName) {
+                    Map<String, ?> allEntries = sharedPreferences.getAll();
+
+                    for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
+                        // Check if the entry is a name key and has the same name as the one being added
+                        if (entry.getKey().endsWith("_name") && entry.getValue().equals(itemName)) {
+                            // Extract the order key from the name key
+                            return entry.getKey().replace("_name", ""); // Return the order key if the item already exists
+                        }
+                    }
+                    return null; // Order with the given name does not exist
                 }
             });
+
+
             ImageView backButton = findViewById(R.id.backButton);
             backButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // Navigate back to MainActivity
-                    Intent mainIntent = new Intent(SelectedMenuItem.this, MainActivity.class);
-                    startActivity(mainIntent);
+                    finish();
                 }
             });
-        }
-
-        // Setup Firestore Database and Auth
-        db = FirebaseFirestore.getInstance();
-        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
-        gsc = GoogleSignIn.getClient(this,gso);
-        auth = FirebaseAuth.getInstance();
-
-        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
-        if (acct != null) {
-            currentEmail = acct.getEmail();
-        }
-
-        FirebaseUser currentUser = auth.getCurrentUser();
-        if (currentUser != null) {
-            currentEmail = currentUser.getEmail();
         }
     }
     private void decreaseQuantity() {
@@ -158,161 +274,35 @@ public class SelectedMenuItem extends AppCompatActivity {
         menuPriceTextView.setText("₱" + String.format("%.2f", totalPrice));
     }
 
-    private void addToCart(String name, double originalPrice, int quantity) {
-        // Create a CartItem object with the provided data
-        CartItem cartItem = new CartItem(name, originalPrice, quantity);
-
-        // Create an Intent to start the CartActivity
-        Intent cartIntent = new Intent(SelectedMenuItem.this, CartActivity.class);
-
-        // Pass the CartItem object as an extra in the Intent
-        cartIntent.putExtra("cartItem", cartItem);
-
-        // Start the CartActivity with the Intent
-        startActivity(cartIntent);
-
-        if (name.equals("") || originalPrice == 0 || quantity == 0) {
-            Log.e(TAG, "error");
-        } else {
-            Log.d(TAG, "success");
-
-            db.collection("users")
-                    .whereEqualTo("email", currentEmail)
-                    .get()
-                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                        @Override
-                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                            Log.d(TAG, "Success: User found!");
-
-                            List<DocumentSnapshot> snapshotList = queryDocumentSnapshots.getDocuments();
-                            for (DocumentSnapshot snapshot : snapshotList) {
-                                DocumentReference userRef = snapshot.getReference();
-                                CollectionReference cartCollection = userRef.collection("cart");
-
-                                // Check if the name already exists in the "addresses" subcollection
-                                cartCollection.whereEqualTo("label", name)
-                                        .get()
-                                        .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                                            @Override
-                                            public void onSuccess(QuerySnapshot querySnapshot) {
-                                                if (querySnapshot.isEmpty()) {
-                                                    // The label does not exist, so add the new address
-                                                    Map<String, Object> newCart = new HashMap<>();
-                                                    newCart.put("name", name);
-                                                    newCart.put("originalPrice", originalPrice);
-                                                    newCart.put("quantity", quantity);
-
-                                                    cartCollection.add(newCart)
-                                                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                                                @Override
-                                                                public void onSuccess(DocumentReference documentReference) {
-                                                                    Log.d(TAG, "Cart added with ID: " + documentReference.getId());
-                                                                    setResult(RESULT_OK, new Intent());
-                                                                    finish();
-                                                                    Toast.makeText(getApplicationContext(), "New Cart Added", Toast.LENGTH_SHORT).show();
-                                                                }
-                                                            })
-                                                            .addOnFailureListener(new OnFailureListener() {
-                                                                @Override
-                                                                public void onFailure(@NonNull Exception e) {
-                                                                    Log.w(TAG, "Error adding cart", e);
-                                                                }
-                                                            });
-                                                } else {
-                                                    // The name already exists, show an error message
-                                                    Log.e(TAG, "Error: Label already exists.");
-                                                }
-                                            }
-                                        })
-                                        .addOnFailureListener(new OnFailureListener() {
-                                            @Override
-                                            public void onFailure(@NonNull Exception e) {
-                                                Log.e(TAG, "Failure checking if cart exists", e);
-                                            }
-                                        });
-                            }
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Log.e(TAG, "Failure: ", e);
-                        }
-                    });
-        }
-    }
-
-    @Override
-    public void onBackPressed() {
-        // Navigate back to MainActivity
-        super.onBackPressed();
-        Intent mainIntent = new Intent(SelectedMenuItem.this, MainActivity.class);
-        startActivity(mainIntent);
-        finish(); // Optional: Call finish() to close the current activity
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setImage(int quantity) {
-        this.quantity = quantity;
-    }
-
-    private void setupBottomNavigationView() {
-        navbar.setSelectedItemId(R.id.menu_cart);
-        navbar.setOnItemSelectedListener(item -> {
-            int id = item.getItemId();
-            if (id == R.id.menu_home) {
-                startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
-                finish();
-                return true;
-            }
-            else if (id == R.id.menu_cart) {
-                startActivity(new Intent(getApplicationContext(),CartActivity.class));
-                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
-                finish();
-                return true;
-            }
-            else if (id == R.id.menu_address) {
-                startActivity(new Intent(getApplicationContext(), AddressActivity.class));
-                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
-                finish();
-                return true;
-            }
-            else if (id == R.id.menu_profile) {
-                startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
-                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
-                finish();
-                return true;
-            }
-            return false;
-        });
-    }
-
     public void profile(View v) {
         startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
         overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
         finish();
     }
 
-    public void goBack (View v) {
-        finish();
+    private void setupBottomNavigationView() {
+        navbar.setSelectedItemId(R.id.menu_home);
+        navbar.setOnItemSelectedListener(item -> {
+            int id = item.getItemId();
+            if (id == R.id.menu_home) {
+                return true;
+            }
+            else if (id == R.id.menu_cart) {
+                startActivity(new Intent(getApplicationContext(),CartActivity.class));
+                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+                return true;
+            }
+            else if (id == R.id.menu_address) {
+                startActivity(new Intent(getApplicationContext(), AddressActivity.class));
+                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+                return true;
+            }
+            else if (id == R.id.menu_profile) {
+                startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
+                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+                return true;
+            }
+            return false;
+        });
     }
 }

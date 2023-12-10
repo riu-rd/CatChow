@@ -21,10 +21,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:onClick="goBack"
-            android:src="@drawable/back"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="20dp" />
+            android:layout_marginStart="8dp"
+            android:src="@drawable/back" />
 
         <ImageView
             android:id="@+id/top_profile_btn"
@@ -32,6 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:onClick="profile"
+            android:padding="10dp"
             android:src="@drawable/profile_icon"
             tools:layout_editor_absoluteX="368dp"
             tools:layout_editor_absoluteY="14dp" />
@@ -43,8 +42,6 @@
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_marginTop="32dp"
-        android:background="@color/background"
-        android:backgroundTint="@color/background"
         android:src="@drawable/mcdo_logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -85,6 +82,8 @@
         android:hint="Note:"
         android:paddingVertical="4dp"
         android:paddingStart="8dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/hard_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/menuPrice" />
@@ -108,6 +107,7 @@
         android:layout_marginTop="32dp"
         android:gravity="center"
         android:text="1"
+        android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/increaseQuantity"
         app:layout_constraintHorizontal_bias="0.5"

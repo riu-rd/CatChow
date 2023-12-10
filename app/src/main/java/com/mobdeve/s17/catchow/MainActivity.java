@@ -7,7 +7,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -134,19 +136,16 @@ public class MainActivity extends AppCompatActivity {
             else if (id == R.id.menu_cart) {
                 startActivity(new Intent(getApplicationContext(),CartActivity.class));
                 overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
-                finish();
                 return true;
             }
             else if (id == R.id.menu_address) {
                 startActivity(new Intent(getApplicationContext(), AddressActivity.class));
                 overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
-                finish();
                 return true;
             }
             else if (id == R.id.menu_profile) {
                 startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
                 overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
-                finish();
                 return true;
             }
             return false;
@@ -255,5 +254,44 @@ public class MainActivity extends AppCompatActivity {
             }
             adapter.setFilteredList(filteredList);
         }
+    }
+
+    private void clearSharedPreferencesData() {
+        SharedPreferences sharedPreferences = getSharedPreferences("cartPreferences", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.apply();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d(TAG, "onStart: Activity started");
+//        clearSharedPreferencesData();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume: Activity resumed");
+//        clearSharedPreferencesData();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d(TAG, "onPause: Activity paused");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(TAG, "onStop: Activity stopped");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy: Activity destroyed");
     }
 }

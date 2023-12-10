@@ -30,7 +30,7 @@
             android:layout_marginTop="16dp"
             android:fontFamily="@font/museo_sans_rounded_900"
             android:text="Add Methods"
-            android:textColor="@color/soft_text"
+            android:textColor="@color/hard_text"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -46,11 +46,13 @@
             android:id="@+id/user_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="50dp"
             android:hint="Enter Number"
             android:padding="8dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginEnd="50dp"
-            android:layout_marginTop="8dp"/>
+            android:textColor="@color/black"
+            android:textColorHint="@color/soft_text" />
 
         <Button
             android:id="@+id/link_button"

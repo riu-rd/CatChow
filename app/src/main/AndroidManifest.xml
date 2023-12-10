@@ -14,56 +14,71 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CatChow"
         tools:targetApi="31">
-
+        <activity
+            android:name=".OrderHistoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RatingListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ReviewFormActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ViewAddressActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddAddressActivity"
+            android:exported="false" />
         <activity
             android:name=".ResMenuActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".History"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".SelectedMenuItem"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".LogInActivity"
-            android:exported="false"
-            android:windowSoftInputMode="adjustPan"/>
-        <activity
-            android:name=".SignUpActivity"
-            android:exported="false"
-            android:windowSoftInputMode="adjustPan"/>
-        <activity
-            android:name=".PaymentMethodActivity"
-            android:exported="false"
-            android:windowSoftInputMode="adjustPan"/>
-        <activity
-            android:name=".OrderPlacedActivity"
-            android:exported="false"
-            android:windowSoftInputMode="adjustPan"/>
-        <activity
-            android:name=".CartActivity"
-            android:exported="false"
-            android:windowSoftInputMode="adjustPan"/>
-        <activity
-            android:name=".AddressActivity"
-            android:exported="false"
-            android:windowSoftInputMode="adjustPan"/>
-        <activity
-            android:name=".ProfileActivity"
-            android:exported="false"
-            android:windowSoftInputMode="adjustPan"/>
-        <activity
-            android:name=".MainActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".SignUpActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".PaymentMethodActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".OrderPlacedActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".CartActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".AddressActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
     </application>
 
 </manifest>

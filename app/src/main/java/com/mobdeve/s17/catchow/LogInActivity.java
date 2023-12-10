@@ -126,6 +126,11 @@ public class LogInActivity extends AppCompatActivity {
             }
         });
 
+        if (auth.getCurrentUser() != null) {
+            // User is already authenticated, navigate to MainActivity
+            navigateToMainActivity();
+        }
+
     }
 
     void signIn(){

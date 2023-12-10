@@ -6,15 +6,18 @@ public class Food {
     private Double price;
     private String type;
 
+    private String storename;
+
     public Food() {
         // Default constructor
     }
 
-    public Food(String imageurl, String name, Double price, String type) {
+    public Food(String imageurl, String name, Double price, String type, String storename) {
         this.imageurl = imageurl;
         this.name = name;
         this.price = price;
         this.type = type;
+        this.storename = storename;
     }
 
     public String getImageurl() {
@@ -47,5 +50,13 @@ public class Food {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getStorename() {
+        return storename = storename;
+    }
+
+    public void setStorename(String type) {
+        this.storename = storename;
     }
 }

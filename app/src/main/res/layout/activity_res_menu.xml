@@ -108,20 +108,20 @@
             app:layout_constraintStart_toEndOf="@+id/res_img"
             app:layout_constraintTop_toBottomOf="@+id/menugreeting_txt" />
 
-        <TextView
-            android:id="@+id/rating_txt"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="37dp"
-            android:fontFamily="@font/museo_sans_rounded_300"
-            android:padding="2dp"
-            android:text="4.5"
-            android:textAlignment="viewStart"
-            android:textColor="@color/hard_text"
-            android:textSize="10sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/star_btn" />
+<!--        <TextView-->
+<!--            android:id="@+id/rating_txt"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:layout_marginEnd="37dp"-->
+<!--            android:fontFamily="@font/museo_sans_rounded_300"-->
+<!--            android:padding="2dp"-->
+<!--            android:text="4.5"-->
+<!--            android:textAlignment="viewStart"-->
+<!--            android:textColor="@color/hard_text"-->
+<!--            android:textSize="10sp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/star_btn" />-->
 
         <TextView
             android:id="@+id/see_txt"
@@ -135,7 +135,7 @@
             android:textColor="@color/orange"
             android:textSize="10sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rating_txt" />
+            app:layout_constraintTop_toBottomOf="@+id/star_btn" />
 
         <TextView
             android:id="@+id/info_txt"

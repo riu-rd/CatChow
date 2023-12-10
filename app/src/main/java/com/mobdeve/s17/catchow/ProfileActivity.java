@@ -24,7 +24,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class ProfileActivity extends AppCompatActivity {
 
     BottomNavigationView navbar;
-    Button logout_button, payment_button, address_button;
+    Button logout_button, payment_button, address_button, history_button;
 
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
@@ -52,6 +52,7 @@ public class ProfileActivity extends AppCompatActivity {
         logout_button = findViewById(R.id.logout_button);
         payment_button = findViewById(R.id.payment_button);
         address_button = findViewById(R.id.address_button);
+        history_button = findViewById(R.id.history_button);
 
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         gsc = GoogleSignIn.getClient(this,gso);
@@ -103,15 +104,20 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), AddressActivity.class));
-                finish();
             }
         });
 
         payment_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
                 startActivity(new Intent(ProfileActivity.this, PaymentMethodActivity.class));
+            }
+        });
+
+        history_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ProfileActivity.this, History.class));
             }
         });
     }
